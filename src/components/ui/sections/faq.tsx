@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/accordion";
 import Container from "@/components/ui/container";
 
-import { FAQsHomeList } from "@/data/faq-home";
+import { FAQsHomeList } from "@/data/faq";
 
 const FAQ = () => {
   return (
     <div className="w-full pt-16 px-4 md:px-8 -mb-16 relative z-10" id="FAQs">
       <Container>
-        <div className="flex flex-col lg:flex-row justify-between bg-[#EDF2F4] gap-8 rounded-tl-lg rounded-tr-lg rounded-bl-3xl rounded-br-3xl px-8 py-12 md:py-16 md:px-16">
+        <div className="flex flex-col lg:flex-row justify-between bg-slate-200 gap-8 rounded-tl-lg rounded-tr-lg rounded-bl-3xl rounded-br-3xl px-8 py-12 md:py-16 md:px-16">
           <div className="flex flex-col w-full lg:w-1/3">
             <Image
               src="/fale-com-um-consultor.png"
@@ -31,7 +31,7 @@ const FAQ = () => {
               Não encontrou aqui sua resposta?{" "}
               <Link
                 href="#contact"
-                className="text-id-green transition-colors underline hover:text-id-green"
+                className="text-network-primary transition-colors underline hover:text-primary"
               >
                 Envie-nos uma mensagem
               </Link>
@@ -43,10 +43,11 @@ const FAQ = () => {
                 <AccordionItem
                   value={`item-faq-${item.id}`}
                   key={`item-faq-${item.id}`}
+                  className="border-slate-300"
                 >
                   <AccordionTrigger>
                     <div className="flex flex-nowrap gap-6 items-center justify-start text-left">
-                      <div className="text-id-green font-semibold tracking-tight text-[13px] w-5">
+                      <div className="text-network-primary font-semibold tracking-tight text-[13px] w-5">
                         0{index + 1}
                       </div>{" "}
                       <div className="tracking-tight">{item.question}</div>
