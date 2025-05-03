@@ -5,12 +5,14 @@ import IconDevices from "./Icon-devices";
 import IconDoor from "./Icon-door";
 import IconFacebook from "./Icon-facebook";
 import IconFaceID from "./Icon-face-id";
+import IconFiveStars from "./Icon-five-stars";
 import IconKey from "./Icon-key";
 import IconFingerprint from "./Icon-fingerprint";
 import IconLinkedin from "./Icon-linkedin";
 import IconMail from "./Icon-mail";
 import IconPhone from "./Icon-phone";
 import IconPackage from "./Icon-package";
+
 import IconUsers from "./Icon-users";
 import IconUserCheck from "./Icon-user-check";
 import IconWhatsApp from "./Icon-whatsApp";
@@ -23,6 +25,7 @@ export {
   IconDevices,
   IconDoor,
   IconFacebook,
+  IconFiveStars,
   IconFaceID,
   IconKey,
   IconFingerprint,

@@ -49,6 +49,8 @@
   --color-id-green: #00e5ba;
   --color-id-green-light: #d4ffe8;
   --color-network-primary: #5c5edc;
+  --color-saas-orange--dark: #ff5f18;
+  --color-saas-orange--light: #f5b539;
 }
 
 :root {

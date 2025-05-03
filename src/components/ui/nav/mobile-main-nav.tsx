@@ -9,7 +9,11 @@ const MobileMainNav = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden text-white">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="inline-flex xl:hidden text-white"
+        >
           <Menu className="h-6 w-6" />
           <span className="sr-only">Abrir menu</span>
         </Button>

@@ -11,10 +11,10 @@ import { ChevronDown, ArrowRight, SquareArrowOutUpRight } from "lucide-react";
 
 const DesktopMainNav = () => {
   return (
-    <nav className="hidden md:flex items-center gap-2">
+    <nav className="hidden xl:flex items-center gap-2">
       <Link
         href="/quem-somos"
-        className="text-sm font-medium text-white hover:text-purple-300 transition-colors p-2"
+        className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2"
       >
         Quem Somos
       </Link>
@@ -22,7 +22,7 @@ const DesktopMainNav = () => {
         <DropdownMenuTrigger asChild>
           <Button
             variant="link"
-            className="text-sm font-medium text-white hover:text-purple-300 transition-colors p-2 h-auto"
+            className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2 h-auto hover:no-underline"
           >
             Soluções <ChevronDown className="ml-1 h-4 w-4" />
           </Button>
@@ -73,7 +73,7 @@ const DesktopMainNav = () => {
         <DropdownMenuTrigger asChild>
           <Button
             variant="link"
-            className="text-sm font-medium text-white hover:text-purple-300 transition-colors p-2 h-auto"
+            className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2 h-auto hover:no-underline"
           >
             Produtos <ChevronDown className="ml-1 h-4 w-4" />
           </Button>
@@ -193,7 +193,7 @@ const DesktopMainNav = () => {
               target="_blank"
               className="w-full flex items-center gap-4 justify-between"
             >
-              <div className="flex flex-col items-start gap-2 text-primary w-auto [&_svg]:!w-auto [&_svg]:!h-[32px] [&_svg]:!text-slate-900 justify-start text-left">
+              <div className="flex flex-col items-start gap-2 text-primary w-auto [&_svg]:!w-auto [&_svg]:!h-[32px] [&_svg]:!text-saas-orange--dark justify-start text-left">
                 <svg
                   width="154"
                   height="42"
@@ -201,7 +201,7 @@ const DesktopMainNav = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-path="url(#clip0_30_580)">
+                  <g clipPath="url(#clip0_30_580)">
                     <path
                       d="M38.2748 19.6768V25.8311H34.9629V9.24707H40.9994C42.9571 9.24707 44.4321 9.7169 45.4274 10.6566C46.4216 11.5962 46.9192 12.8729 46.9192 14.4855C46.9192 16.0674 46.4058 17.3276 45.3809 18.2669C44.3549 19.2066 42.8941 19.6764 40.9998 19.6764H38.2748V19.6768ZM43.5601 14.4859C43.5601 13.656 43.3332 13.0219 42.8791 12.5828C42.4243 12.1444 41.6807 11.9256 40.6478 11.9256H38.2748V17.0224H40.6478C42.589 17.0224 43.5601 16.1768 43.5601 14.4859Z"
                       fill="currentColor"
@@ -253,19 +253,19 @@ const DesktopMainNav = () => {
       </DropdownMenu>
       <Link
         href="/blog"
-        className="text-sm font-medium text-white hover:text-purple-300 transition-colors p-2"
+        className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2"
       >
         Blog
       </Link>
       <Link
         href="/recursos"
-        className="text-sm font-medium text-white hover:text-purple-300 transition-colors p-2"
+        className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2"
       >
         Recursos
       </Link>
       <Link
         href="/contato"
-        className="text-sm font-medium text-white hover:text-purple-300 transition-colors p-2"
+        className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2"
       >
         Contato
       </Link>
