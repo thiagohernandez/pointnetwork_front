@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Container from "@/components/ui/container";
 import { ArrowRight } from "lucide-react";
 import { ourSolutionsCardsData } from "@/data/our-solutions-cards";
 
@@ -36,7 +37,7 @@ const SolucaoCard = ({
 export function OurSolutionsCards() {
   return (
     <section className="py-16">
-      <div className="container mx-auto px-4">
+      <Container>
         <h2 className="text-xl text-slate-600 font-semibold tracking-tight mb-8">
           Nossas soluções
         </h2>
@@ -54,7 +55,7 @@ export function OurSolutionsCards() {
             />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

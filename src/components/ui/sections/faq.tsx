@@ -13,7 +13,7 @@ import { FAQsHomeList } from "@/data/faq";
 
 const FAQ = () => {
   return (
-    <div className="w-full pt-16 px-4 md:px-8 -mb-16 relative z-10" id="FAQs">
+    <div className="w-full pt-16 -mb-16 relative z-10" id="FAQs">
       <Container>
         <div className="flex flex-col lg:flex-row justify-between bg-slate-200 gap-8 rounded-tl-lg rounded-tr-lg rounded-bl-3xl rounded-br-3xl px-8 py-12 md:py-16 md:px-16">
           <div className="flex flex-col w-full lg:w-1/3">
