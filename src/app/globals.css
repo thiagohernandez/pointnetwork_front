@@ -89,6 +89,55 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+.card-solution {
+  @apply transition-all relative overflow-hidden;
+}
+
+.card-solution:before {
+  @apply absolute w-full h-full left-0 opacity-0 transition-all;
+  background-image: url("/bg-card-solution.svg");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  content: "";
+  bottom: -30%;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+.card-solution:hover:before {
+  opacity: 1;
+  bottom: -20%;
+}
+.card-solution .icon {
+  @apply text-id-gray-dark;
+}
+
+.card-solution.solution-card__point-condominio {
+  @apply bg-network-primary/15 text-id-gray-dark hover:bg-network-primary hover:text-white;
+}
+
+.card-solution.solution-card__point-condominio .icon {
+  @apply text-network-primary;
+}
+
+.card-solution:hover .icon {
+  @apply text-white;
+}
+
+.card-solution.solution-card__point-id {
+  @apply bg-id-green/15 text-id-gray-dark hover:bg-id-green hover:text-id-gray-dark;
+}
+.card-solution.solution-card__point-id:before {
+  mix-blend-mode: normal;
+}
+
+.card-solution.solution-card__point-id:hover .icon {
+  @apply text-id-gray-dark;
+}
+
+.card-solution.solution-card__point-saas {
+  @apply bg-saas-orange--dark/15 text-id-gray-dark hover:bg-saas-orange--dark hover:text-white;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
