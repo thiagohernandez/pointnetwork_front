@@ -5,6 +5,7 @@ export interface TabData {
     header: string;
     subheader: string;
     url: string;
+    image: string;
     features: {
       icon: React.ReactNode;
       title: string;

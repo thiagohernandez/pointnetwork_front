@@ -4,6 +4,7 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { TabData } from "@/types/types";
 
+import Image from "next/image";
 import Container from "@/components/ui/container";
 
 import { ArrowRight } from "lucide-react";
@@ -42,7 +43,7 @@ export function SolucoesTabs() {
   const activeContent = tabs.find((tab) => tab.id === activeTab)?.content;
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-porcelain">
       <Container>
         <div className="flex flex-col lg:flex-row">
           {/* Tabs - Vertical on desktop, Horizontal scroll on mobile */}
@@ -189,6 +190,7 @@ export function SolucoesTabs() {
                 </AnimatePresence>
 
                 {/* Image */}
+
                 <motion.div
                   className="lg:w-2/3 relative"
                   initial={{ opacity: 0 }}
@@ -196,11 +198,40 @@ export function SolucoesTabs() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <div className="rounded-xl overflow-hidden h-full">
-                    <img
-                      src="/user-saas-point-condominio.jpg"
-                      alt="Pessoa usando laptop"
-                      className="w-full h-full object-cover"
-                    />
+                    <div className="rounded-xl overflow-hidden relative">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={activeTab}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.6 }}
+                          className="w-full h-full absolute inset-0"
+                        >
+                          <Image
+                            src={
+                              activeContent?.image
+                                ? activeContent?.image
+                                : "/user-saas-point-condominio.jpg"
+                            }
+                            alt={
+                              activeContent?.header
+                                ? activeContent?.header
+                                : "Point Network"
+                            }
+                            width={458}
+                            height={986}
+                            className="w-full h-full object-cover"
+                            priority
+                          />
+                        </motion.div>
+                      </AnimatePresence>
+                      <canvas
+                        width={458}
+                        height={820}
+                        className="w-full h-full object-cover bg-porcelain"
+                      />
+                    </div>
 
                     {/* Overlay card */}
                     <motion.div
