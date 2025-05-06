@@ -1,5 +1,6 @@
 import IconAlert from "./Icon-alert";
 import IconArrowRight from "./Icon-arrow-right";
+import IconBrasilMap from "./Icon-brasil-map";
 import IconCalendar from "./Icon-calendar";
 import IconDevices from "./Icon-devices";
 import IconDoor from "./Icon-door";
@@ -21,6 +22,7 @@ import IconX from "./Icon-x";
 export {
   IconAlert,
   IconArrowRight,
+  IconBrasilMap,
   IconCalendar,
   IconDevices,
   IconDoor,

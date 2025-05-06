@@ -43,7 +43,7 @@ export function SolucoesTabs() {
   const activeContent = tabs.find((tab) => tab.id === activeTab)?.content;
 
   return (
-    <section className="py-16 bg-porcelain">
+    <section className="py-16 lg:py-32 bg-porcelain">
       <Container>
         <div className="flex flex-col lg:flex-row">
           {/* Tabs - Vertical on desktop, Horizontal scroll on mobile */}
@@ -145,7 +145,11 @@ export function SolucoesTabs() {
                       transition={{ duration: 0.3, delay: 0.2 }}
                     >
                       <Heading headingLevel={4} className="mb-6">
-                        {activeContent?.subheader}
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: activeContent?.subheader || "",
+                          }}
+                        />
                       </Heading>
                     </motion.div>
 

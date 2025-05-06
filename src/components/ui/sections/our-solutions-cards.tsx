@@ -36,7 +36,7 @@ const SolucaoCard = ({
 
 export function OurSolutionsCards() {
   return (
-    <section className="py-16">
+    <section className="py-16 lg:py-32">
       <Container>
         <h2 className="text-xl text-slate-600 font-semibold tracking-tight mb-8">
           Nossas soluções

@@ -27,7 +27,7 @@ export const tabsSolutionsData: TabData[] = [
     content: {
       header: "Administradoras e Síndicos profissionais",
       subheader:
-        "Automatize processos e otimize a gestão condominial com eficiência.",
+        "<strong>Automatize processos e otimize</strong> a gestão condominial com eficiência.",
       url: "solucoes/administradoras",
       image: "/user-saas-point-condominio.jpg",
       features: [
@@ -61,7 +61,8 @@ export const tabsSolutionsData: TabData[] = [
     title: "Moradores de condomínio",
     content: {
       header: "Moradores de condomínio",
-      subheader: "Mais praticidade e conveniência no dia a dia.",
+      subheader:
+        "<strong>Mais praticidade</strong> e conveniência no dia a dia.",
       url: "solucoes/moradores",
       image: "/user-saas-point-condominio-003.jpg",
       features: [
@@ -96,7 +97,8 @@ export const tabsSolutionsData: TabData[] = [
     title: "Portarias e controle de acesso",
     content: {
       header: "Portarias e controle de acesso",
-      subheader: "Segurança reforçada para condomínios e empresas.",
+      subheader:
+        "<strong>Segurança reforçada</strong> para condomínios e empresas.",
       url: "solucoes/controle-de-acesso",
       image: "/user-saas-point-condominio-004.jpg",
       features: [
@@ -131,7 +133,8 @@ export const tabsSolutionsData: TabData[] = [
     title: "Gestão financeira",
     content: {
       header: "Gestão financeira",
-      subheader: "Simplifique a contabilidade e otimize o fluxo de caixa.",
+      subheader:
+        "<strong>Simplifique a contabilidade</strong> e otimize o fluxo de caixa.",
       url: "solucoes/gestao-financeira",
       image: "/user-saas-point-condominio-002.jpg",
       features: [
