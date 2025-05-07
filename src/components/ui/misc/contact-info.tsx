@@ -1,0 +1,65 @@
+import React from "react";
+import StatusHour from "@/components/ui/misc/status-hour";
+
+const ContactInfo = () => {
+  return (
+    <div className="lg:w-1/3 bg-slate-200 p-16 rounded-b-lg lg:rounded-b-none lg:rounded-r-lg text-left tracking-tight">
+      <h2 className="text-xs tracking-wider font-bold text-slate-800 mb-6">
+        POINT CONDOMÍNIO
+      </h2>
+
+      <div className="space-y-6">
+        <div className="flex items-start gap-2 text-sm text-slate-700">
+          <address className="not-italic">
+            <p>Rua Padre Roque, 1110 - Sala 11</p>
+            <p>Jardim áurea - Mogi Mirim - SP</p>
+            <p>CEP: 04101-300</p>
+          </address>
+        </div>
+
+        <div>
+          <p className="text-slate-700 mb-1 text-sm">Ligue para a gente</p>
+          <a
+            href="tel:+551935496041"
+            className="text-network-primary text-xl font-medium hover:underline"
+          >
+            <small>(19)</small> 3549-6041
+          </a>
+        </div>
+
+        <div>
+          <p className="text-slate-700 mb-1 text-sm">
+            Envie um email para gente
+          </p>
+          <a
+            href="mailto:contato@pointcondominio.com.br"
+            className="text-network-primary hover:underline text-sm font-semibold"
+          >
+            contato@pointcondominio.com.br
+          </a>
+        </div>
+
+        <div className="pt-4">
+          <h3 className="text-xs tracking-wider font-bold text-slate-800 mb-4">
+            HORÁRIO DE ATENDIMENTO
+          </h3>
+
+          <StatusHour />
+
+          <div className="flex items-start gap-2 text-slate-700 text-sm">
+            <div>
+              <p>
+                <strong>Segunda - Sexta:</strong> 9h00 às 18h00
+              </p>
+              <p>
+                <strong>Sábado, Domingo e Feriados:</strong> Fechado
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactInfo;

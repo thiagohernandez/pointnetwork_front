@@ -139,6 +139,62 @@
   @apply bg-saas-orange--dark/15 text-id-gray-dark hover:bg-saas-orange--dark hover:text-white;
 }
 
+.blob {
+  background: black;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 black;
+  margin: 10px;
+  height: 14px;
+  width: 14px;
+  transform: scale(1);
+}
+
+.blob.red {
+  background: rgba(247, 54, 80, 1);
+  box-shadow: 0 0 0 0 rgba(247, 54, 80, 1);
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(247, 54, 80, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(247, 54, 80, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(247, 54, 80, 0);
+  }
+}
+
+.blob.green {
+  background: #33d9b2;
+  box-shadow: 0 0 0 0 #33d9b2;
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(51, 217, 178, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(51, 217, 178, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(51, 217, 178, 0);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
