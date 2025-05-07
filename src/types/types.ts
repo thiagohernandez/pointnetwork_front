@@ -13,3 +13,17 @@ export interface TabData {
     }[];
   };
 }
+
+interface BlogPostProps {
+  id: number;
+  title: string;
+  excerpt: string;
+  description: string;
+  image: string;
+  date: string;
+  url: string;
+}
+
+export interface BlogProps {
+  posts: BlogPostProps[];
+}
