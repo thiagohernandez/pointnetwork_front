@@ -195,6 +195,17 @@
   }
 }
 
+.PhoneInput {
+  /* @apply  placeholder:text-slate-400 selection:bg-primary selection:text-primary-foreground text-slate-600 bg-slate-100 border-slate-400/25 flex h-10 w-full min-w-0 rounded-md border px-3 py-1 text-base font-semibold tracking-tight shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm; */
+  @apply placeholder:text-slate-400 selection:bg-primary selection:text-primary-foreground text-slate-600 bg-slate-100 border-slate-400/25 flex h-12 w-full min-w-0 rounded-md border px-3 py-1 text-base font-semibold tracking-tight shadow-xs transition-[color,box-shadow];
+}
+.PhoneInput.PhoneInput--focus {
+  @apply border-ring ring-ring/50 ring-[3px];
+}
+.PhoneInput.PhoneInput--focus input {
+  @apply outline-none;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

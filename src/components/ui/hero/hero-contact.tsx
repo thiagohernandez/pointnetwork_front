@@ -3,6 +3,7 @@ import Image from "next/image";
 import Container from "@/components/ui/container";
 
 import ContactInfo from "@/components/ui/misc/contact-info";
+import ContactForm from "@/components/ui/form/contact-form";
 
 const HeroContact = () => {
   return (
@@ -26,7 +27,7 @@ const HeroContact = () => {
           </p>
           <div className="w-full flex flex-col lg:flex-row -mb-16">
             <div className="flex flex-col w-full lg:w-2/3 bg-white p-16 lg:rounded-l-lg">
-              formulario
+              <ContactForm />
             </div>
             <ContactInfo />
           </div>
