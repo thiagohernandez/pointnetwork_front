@@ -14,6 +14,8 @@ import BlogLastsPosts from "@/components/ui/sections/blog-lasts-posts";
 import FullImage from "@/components/ui/sections/full-image";
 import { FullVideoBackground } from "@/components/ui/sections/full-video-background";
 import Infrastructure from "@/components/ui/sections/infrastructure";
+import ContactSection from "@/components/ui/sections/contact-section";
+import { BackgroundImageTwoColumns } from "@/components/ui/sections/background-image-two-columns";
 import Container from "@/components/ui/container";
 import Heading from "@/components/ui/heading";
 
@@ -174,6 +176,8 @@ export default function Home() {
         </div>
       </Container>
       <Infrastructure />
+      <ContactSection />
+      <BackgroundImageTwoColumns />
       <BlogLastsPosts />
     </>
   );

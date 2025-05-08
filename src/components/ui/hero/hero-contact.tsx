@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Container from "@/components/ui/container";
 
 import ContactInfo from "@/components/ui/misc/contact-info";
 import ContactForm from "@/components/ui/form/contact-form";
