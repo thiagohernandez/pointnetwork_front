@@ -9,6 +9,10 @@ import IconFaceID from "./Icon-face-id";
 import IconFiveStars from "./Icon-five-stars";
 import IconKey from "./Icon-key";
 import IconFingerprint from "./Icon-fingerprint";
+import IconLogoAws from "./Icon-logo-aws";
+import IconLogoP from "./Icon-LogoP";
+import IconLogoGoogleCloud from "./Icon-logo-google-cloud";
+
 import IconLinkedin from "./Icon-linkedin";
 import IconMail from "./Icon-mail";
 import IconPhone from "./Icon-phone";
@@ -31,6 +35,9 @@ export {
   IconFaceID,
   IconKey,
   IconFingerprint,
+  IconLogoAws,
+  IconLogoP,
+  IconLogoGoogleCloud,
   IconLinkedin,
   IconMail,
   IconPackage,

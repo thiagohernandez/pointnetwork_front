@@ -12,6 +12,8 @@ import { HeroFullWidth } from "@/components/ui/hero";
 
 import BlogLastsPosts from "@/components/ui/sections/blog-lasts-posts";
 import FullImage from "@/components/ui/sections/full-image";
+import { FullVideoBackground } from "@/components/ui/sections/full-video-background";
+import Infrastructure from "@/components/ui/sections/infrastructure";
 import Container from "@/components/ui/container";
 import Heading from "@/components/ui/heading";
 
@@ -88,33 +90,35 @@ export default function Home() {
           <div className="lg:w-2/3 lg:justify-end">
             <div className="lg:max-w-4xl grid grid-cols-1 lg:grid-cols-3 gap-4 ml-auto">
               <div className="col-001 grid grid-rows-2 justify-between gap-4 h-full">
-                <div className="w-full bg-secondary px-6 py-8 rounded-2xl flex flex-col justify-between gap-0 font-semibold tracking-tight text-[#D1CDF6] transition-colors hover:bg-network-primary hover:text-white">
-                  <p className="text-sm">Mais de</p>
-                  <p className="text-6xl font-semibold tracking-tighter">
-                    25 anos
-                  </p>
-                  <p className="text-sm">de experiência</p>
+                <div className="w-full bg-secondary px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-[#D1CDF6] transition-colors hover:bg-network-primary hover:text-white">
+                  <div className="leading-snug">
+                    <p className="text-sm">Mais de</p>
+                    <p className="text-6xl font-semibold tracking-tighter">
+                      25 anos
+                    </p>
+                    <p className="text-sm">de experiência</p>
+                  </div>
                 </div>
-                <div className="w-full bg-id-green px-6 py-8 rounded-2xl flex flex-col justify-between gap-0 font-semibold tracking-tight text-id-gray-dark transition-colors hover:bg-network-primary hover:text-white">
-                  <p className="text-sm">Mais de</p>
-                  <p className="text-6xl font-semibold tracking-tighter">
-                    2.000
-                  </p>
-                  <p className="text-sm">
-                    clientes, entre administradoras, condomínios e síndicos
-                  </p>
+                <div className="w-full bg-id-green px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-id-gray-dark transition-colors hover:bg-network-primary hover:text-white">
+                  <div className="leading-snug">
+                    <p className="text-sm">Mais de</p>
+                    <p className="text-6xl font-semibold tracking-tighter">
+                      2.000
+                    </p>
+                    <p className="text-sm">
+                      clientes, entre administradoras, condomínios e síndicos
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="col-002 grid justify-between gap-4 h-full">
-                <div className="rounded-2xl overflow-hidden">
-                  <Image
-                    src="/why-pointnetwork-002.jpg"
-                    alt="Point Network"
-                    width={473}
-                    height={443}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+              <div className="col-002 grid justify-between gap-4 h-full rounded-2xl overflow-hidden">
+                <Image
+                  src="/gestao-de-condominio-point-network.jpg"
+                  alt="Point Network"
+                  width={544}
+                  height={746}
+                  className="w-auto h-full object-cover"
+                />
               </div>
               <div className="col-003 grid justify-between gap-4 h-full">
                 <div className="bg-id-gray-light/15 text-slate-700 overflow-hidden py-6 rounded-2xl flex flex-col justify-between gap-3 h-auto shrink-0 transition-all hover:bg-id-gray-dark hover:text-white group">
@@ -138,7 +142,38 @@ export default function Home() {
           </div>
         </div>
       </Container>
-
+      <FullVideoBackground
+        videoSrc="/videos/8817770-hd_1280_720_25fps.mp4"
+        posterSrc="/placeholder.svg?height=1080&width=1920"
+      />
+      <Container className="py-16 lg:py-32">
+        <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8">
+          <Heading
+            headingLevel={3}
+            variant="headline"
+            className="text-secondary mb-2 whitespace-nowrap pt-2"
+          >
+            Nossos valores
+          </Heading>
+          <Heading headingLevel={4} className="mb-2">
+            <strong>Inovação:</strong> Buscamos constantemente novas soluções
+            para atender às necessidades de nossos clientes.
+          </Heading>
+          <Heading headingLevel={4} className="mb-2">
+            <strong>Compromisso:</strong> Somos comprometidos em entregar a
+            melhor tecnologia e um atendimento de excelência.
+          </Heading>
+          <Heading headingLevel={4} className="mb-2">
+            <strong>Parceria:</strong> Acreditamos em construir relacionamentos
+            sólidos e duradouros com nossos clientes.
+          </Heading>
+          <Heading headingLevel={4} className="mb-2">
+            <strong>Flexibilidade:</strong> Flexibilidade: Nossas soluções se
+            adaptam a qualquer porte de administradora, condomínio e empresa.
+          </Heading>
+        </div>
+      </Container>
+      <Infrastructure />
       <BlogLastsPosts />
     </>
   );
