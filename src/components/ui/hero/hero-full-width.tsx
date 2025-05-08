@@ -14,7 +14,7 @@ const HeroFullWidth = () => {
               </strong>{" "}
               de administradoras, condomínios e empresas.
             </h1>
-            <h2 className="order-1 font-semibold mb-2">Quem somos</h2>
+            <h2 className="order-1 font-semibold mb-3">Quem somos</h2>
             <p className="text-slate-100 order-3 leading-snug max-w-5xl">
               Fazemos isso automatizando processos e agilizando a gestão,
               facilitando a comunicação e auxiliando nossos clientes a
