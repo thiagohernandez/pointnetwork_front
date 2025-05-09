@@ -1,13 +1,13 @@
 import React from "react";
-import Container from "@/components/ui/container";
 import StripeHeroItems from "@/components/ui/misc/stripe-hero-items";
 
 import { IconFiveStars } from "@/components/ui/icons";
+import Scene from "@/components/ui/scene/scene";
 
 const HeroHome = () => {
   return (
-    <div className="w-full bg-[#170E33] min-h-[70vh]">
-      <div className="pb-32 pt-12">
+    <div className="w-full bg-[#170E33] min-h-[75vh] relative isolate">
+      <div className=" pt-12 pb-32">
         <div className="max-w-3xl mx-auto text-center text-white py-32 px-3 items-center justify-center flex flex-col">
           <div className="flex flex-col gap-2">
             <h1 className="order-2 text-7xl md:text-5xl font-semibold tracking-tight">
@@ -29,6 +29,9 @@ const HeroHome = () => {
         </div>
 
         <StripeHeroItems />
+      </div>
+      <div className="w-full h-full absolute top-0 left-0 z-[-1]">
+        <Scene />
       </div>
     </div>
   );

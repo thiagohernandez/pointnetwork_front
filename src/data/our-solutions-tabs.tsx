@@ -1,10 +1,8 @@
 import { IconWhatsApp } from "@/components/ui/icons";
 import { TabData } from "@/types/types";
 import {
-  Globe,
   BanknoteIcon,
   MessageSquare,
-  BarChart3,
   GlobeLock,
   CircleDollarSign,
   ChartSpline,

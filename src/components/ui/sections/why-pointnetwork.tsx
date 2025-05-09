@@ -5,15 +5,7 @@ import { cn } from "@/lib/utils";
 
 import Image from "next/image";
 
-import {
-  ArrowRight,
-  BanknoteArrowUp,
-  Globe,
-  HeadphonesIcon,
-  MapPin,
-  Speech,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowRight, BanknoteArrowUp, Speech } from "lucide-react";
 import { IconDevices, IconBrasilMap } from "@/components/ui/icons";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -23,22 +15,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { whyPointNetworkData } from "@/data/why-pointnetwork";
 
 export function WhyPointNetwork() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
   return (
     <section className="py-16 lg:py-32 bg-white">
       <Container className="container mx-auto px-4">

@@ -8,7 +8,6 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 
 import { blogFakeData } from "@/data/blog-fake-data";
-import { Arrow } from "@radix-ui/react-dropdown-menu";
 
 const BlogLastsPosts = () => {
   return (

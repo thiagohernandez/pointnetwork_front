@@ -5,21 +5,14 @@ import { ourSolutionsCardsData } from "@/data/our-solutions-cards";
 
 interface SolucaoCardProps {
   icon: React.ReactNode;
-  id: string;
+  id?: string;
   title: string;
   desc: string;
   url: string;
   variant?: string;
 }
 
-const SolucaoCard = ({
-  icon,
-  id,
-  title,
-  desc,
-  url,
-  variant,
-}: SolucaoCardProps) => {
+const SolucaoCard = ({ icon, title, desc, url, variant }: SolucaoCardProps) => {
   return (
     <Link href={url} className={`card-solution ${variant} flex rounded-3xl`}>
       <div className={`p-8 flex flex-col h-full relative z-[2]`}>

@@ -3,10 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { Building, ChevronDown, Menu, X } from "lucide-react";
-
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 import { useMobile } from "@/hooks/use-mobile";
 import Container from "@/components/ui/container";
@@ -19,11 +15,9 @@ import { LogoPointNetwork } from "@/components/ui/logo";
 
 const Header = () => {
   const isMobile = useMobile();
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [openMenu, setOpenMenu] = useState(false);
 
   const SCROLL_THRESHOLD = 10;
 
@@ -79,7 +73,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, [handleScroll]);
 
   return (
     <AnimatePresence>

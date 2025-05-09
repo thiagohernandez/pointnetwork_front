@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import Container from "@/components/ui/container";
 import Heading from "@/components/ui/heading";

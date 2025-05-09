@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { motion } from "motion/react";
 
 import Heading from "@/components/ui/heading";
@@ -9,10 +9,13 @@ export function BackgroundImageTwoColumns() {
     <section className="relative py:32 lg:py-52 overflow-hidden">
       {/* Imagem de fundo em escala de cinza */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <img
+        <Image
           src="/man-looking-at-the-window.jpg"
           alt="Profissional em ambiente de trabalho"
           className="w-full h-full object-cover"
+          width={1827}
+          height={854}
+          quality={100}
         />
       </div>
 
