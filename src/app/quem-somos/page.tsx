@@ -10,7 +10,6 @@ import { IconBrasilMap } from "@/components/ui/icons";
 
 import { HeroFullWidth } from "@/components/ui/hero";
 
-import BlogLastsPosts from "@/components/ui/sections/blog-lasts-posts";
 import FullImage from "@/components/ui/sections/full-image";
 import { FullVideoBackground } from "@/components/ui/sections/full-video-background";
 import Infrastructure from "@/components/ui/sections/infrastructure";
