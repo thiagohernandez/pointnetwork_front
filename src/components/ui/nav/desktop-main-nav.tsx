@@ -23,7 +23,7 @@ const DesktopMainNav = () => {
       >
         Quem Somos
       </Link>
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button
             variant="link"
@@ -74,7 +74,7 @@ const DesktopMainNav = () => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button
             variant="link"

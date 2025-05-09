@@ -16,6 +16,7 @@ import { FullVideoBackground } from "@/components/ui/sections/full-video-backgro
 import Infrastructure from "@/components/ui/sections/infrastructure";
 import ContactSection from "@/components/ui/sections/contact-section";
 import { BackgroundImageTwoColumns } from "@/components/ui/sections/background-image-two-columns";
+import ListFeaturesWhyPoint from "@/components/ui/sections/list-features-why-point";
 import Container from "@/components/ui/container";
 import Heading from "@/components/ui/heading";
 
@@ -178,7 +179,7 @@ export default function Home() {
       <Infrastructure />
       <ContactSection />
       <BackgroundImageTwoColumns />
-      <BlogLastsPosts />
+      <ListFeaturesWhyPoint />
     </>
   );
 }

@@ -34,7 +34,7 @@ export function BackgroundImageTwoColumns() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-6 max-w-lg"
             >
               <Heading
                 headingLevel={3}
@@ -43,26 +43,32 @@ export function BackgroundImageTwoColumns() {
               >
                 Transparência
               </Heading>
-              <Heading headingLevel={4} className="mb-2">
+              <Heading headingLevel={4} className="mb-6 text-3xl ">
                 <strong>Construindo confiança</strong>
               </Heading>
-              <p className="text-slate-600 text-lg mb-4">
-                Na Point Network, acreditamos que a base de qualquer parceria
-                sólida é a confiança. E a confiança, por sua vez, floresce em um
-                ambiente de transparência. Por isso, a transparência é um valor
-                fundamental que permeia todas as nossas ações e decisões, desde
-                o desenvolvimento de nossos softwares até o relacionamento com
-                nossos clientes.
+              <p className="text-id-gray text-lg mb-6 tracking-tight font-semibold [&_strong]:text-slate-700 [&_strong]:font-bold">
+                Na Point Network, acreditamos que{" "}
+                <strong>
+                  a base de qualquer parceria sólida é a confiança.
+                </strong>{" "}
+                E a confiança, por sua vez, floresce em um ambiente de
+                transparência. Por isso, a{" "}
+                <strong>
+                  transparência é um valor fundamental que permeia todas as
+                  nossas ações e decisões
+                </strong>
+                , desde o desenvolvimento de nossos softwares até o
+                relacionamento com nossos clientes.
               </p>
 
-              <p className="text-slate-600 text-lg mb-4">
+              <p className="text-id-gray text-lg mb-4  tracking-tight font-semibold">
                 Entendemos que, ao trabalhar com administradoras de condomínio,
                 síndicos, empresas de controle de acesso e pequenas e médias
                 empresas, lidamos com informações sensíveis e de grande
                 importância. Por isso, nos comprometemos a:
               </p>
 
-              <motion.ul
+              {/* <motion.ul
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
@@ -101,7 +107,7 @@ export function BackgroundImageTwoColumns() {
                 >
                   Oferecer suporte humanizado e eficiente
                 </motion.li>
-              </motion.ul>
+              </motion.ul> */}
             </motion.div>
           </div>
         </div>
