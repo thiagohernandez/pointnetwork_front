@@ -27,3 +27,19 @@ interface BlogPostProps {
 export interface BlogProps {
   posts: BlogPostProps[];
 }
+
+export interface ResourceProps {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  learn: {
+    content: string;
+  }[];
+  target: {
+    content: string;
+  }[];
+  img: string;
+  imgHero: string;
+  slug: string;
+}
