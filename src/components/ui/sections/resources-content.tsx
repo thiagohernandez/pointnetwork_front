@@ -1,8 +1,7 @@
 "use client";
 import Container from "@/components/ui/container";
 import { motion } from "motion/react";
-import { ArrowRight, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
 import { CardEbook } from "@/components/ui/cards";
 
 import { ResourcesData } from "@/data/resources-data";

@@ -19,9 +19,9 @@ import { getResourceBySlug, getAllResources } from "@/lib/resources";
 
 // Tipos para as props da página
 interface ResourcePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Geração dinâmica de metadata para SEO
