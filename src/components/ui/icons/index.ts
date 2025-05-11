@@ -17,6 +17,7 @@ import IconLinkedin from "./Icon-linkedin";
 import IconMail from "./Icon-mail";
 import IconPhone from "./Icon-phone";
 import IconPackage from "./Icon-package";
+import IconPatternNetwork from "./Icon-pattern-network";
 
 import IconUsers from "./Icon-users";
 import IconUserCheck from "./Icon-user-check";
@@ -41,6 +42,7 @@ export {
   IconLinkedin,
   IconMail,
   IconPackage,
+  IconPatternNetwork,
   IconPhone,
   IconUsers,
   IconUserCheck,

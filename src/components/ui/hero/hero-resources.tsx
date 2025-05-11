@@ -15,7 +15,10 @@ const HeroResources = ({
   return (
     <div className="w-full bg-[#170E33] pt-32 py-16">
       <Container>
-        <div className="w-full flex justify-between bg-slate-200 rounded-xl overflow-hidden">
+        <div
+          className="w-full flex justify-between bg-slate-200 rounded-xl overflow-hidden"
+          id="downloadResource"
+        >
           <div className="text-white flex lg:w-2/3">
             <div className="px-16 py-12">
               <div className="flex flex-col gap-2 tracking-tight text-slate-600">
