@@ -42,7 +42,11 @@ const formSchema = z.object({
 // Tipo derivado do esquema
 type FormValues = z.infer<typeof formSchema>;
 
-export default function ContactForm() {
+export default function ContactForm({
+  buttonVariant = "primary",
+}: {
+  buttonVariant?: "primary" | "secondary" | "green" | "destructive" | "outline";
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -189,7 +193,7 @@ export default function ContactForm() {
               <Button
                 type="submit"
                 disabled={isSubmitting || !form.formState.isValid}
-                variant="primary"
+                variant={buttonVariant ? buttonVariant : "primary"}
               >
                 Enviar mensagem
                 <ArrowRight className="ml-2 h-4 w-4" />

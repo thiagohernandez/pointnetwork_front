@@ -38,7 +38,7 @@ const DesktopMainNav = () => {
         >
           <DropdownMenuItem className="font-semibold p-4 text-slate-600 hover:bg-slate-200 hover-text-slate-700 transition-all">
             <Link
-              href="/solucoes/item-1"
+              href="/solucoes/administradoras-e-sindicos-profissionais"
               className="w-full flex items-center gap-2 justify-between"
             >
               Administradoras e síndicos profissionais

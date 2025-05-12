@@ -89,7 +89,7 @@ export const ResourcesData: ResourceProps[] = [
     ],
     img: "/resource-thumbnail-002.jpg",
     imgHero: "/placeholder.svg?height=200&width=300",
-    slug: "como-modernizar-a-gestao-de-condominios-em-2025",
+    slug: "guia-completo-de-controle-de-acesso-para-condominios",
   },
   {
     id: "resources003",
@@ -134,6 +134,6 @@ export const ResourcesData: ResourceProps[] = [
     ],
     img: "/resource-thumbnail-003.jpg",
     imgHero: "/placeholder.svg?height=200&width=300",
-    slug: "como-modernizar-a-gestao-de-condominios-em-2025",
+    slug: "manual-de-boas-praticas-financeiras",
   },
 ];
