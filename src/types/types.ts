@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface TabData {
   id: string;
   title: string;
@@ -42,4 +44,18 @@ export interface ResourceProps {
   img: string;
   imgHero: string;
   slug: string;
+}
+
+export interface FeaturesBoxItem {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  img?: {
+    src: string;
+    width: number;
+    height: number;
+  };
+  backgroundColor?: string;
+  backgroundImage?: string;
+  textColor: string;
 }
