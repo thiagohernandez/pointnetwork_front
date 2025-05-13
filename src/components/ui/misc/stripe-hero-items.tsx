@@ -1,5 +1,11 @@
 "use client";
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import {
   motion,
   useAnimationControls,
@@ -146,43 +152,31 @@ const cardSets = [
 ];
 
 const StripeHeroItems = () => {
-  // Properly typed refs
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const widthRef = useRef<number>(0);
-  const baseDurationRef = useRef<number>(30); // Velocidade inicial
+  const baseDurationRef = useRef<number>(30);
   const lastScrollTimeRef = useRef<number>(0);
-  const lastScrollYRef = useRef<number>(0); // Armazena a última posição de scroll
-  const scrollDirectionRef = useRef<number>(1); // 1 para baixo, -1 para cima
-  const currentSpeedRef = useRef<number>(baseDurationRef.current); // Velocidade atual
-  const animationRef = useRef<AnimationPlaybackControls | null>(null); // Referência para a animação atual
+  const lastScrollYRef = useRef<number>(0);
+  const scrollDirectionRef = useRef<number>(1);
+  const currentSpeedRef = useRef<number>(baseDurationRef.current);
+  const animationRef = useRef<AnimationPlaybackControls | null>(null);
   const controls = useAnimationControls();
-  const initialXRef = useRef<number>(0); // Posição X inicial
-
-  // Estado para controlar o efeito de retorno à velocidade normal
+  const initialXRef = useRef<number>(0);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  // Hook para detectar o scroll
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  // Transforma o scroll em uma velocidade de animação
   const scrollVelocity = useTransform(scrollYProgress, [0, 1], [0, 1.0]);
 
-  // Função para iniciar a animação com uma determinada duração e direção
   const startAnimation = useCallback(
     (duration: number, direction: number) => {
-      // Atualiza a velocidade atual
       currentSpeedRef.current = duration;
+      animationRef.current?.stop();
 
-      // Cancela qualquer animação de inércia existente
-      if (animationRef.current) {
-        animationRef.current.stop();
-      }
-
-      // Calcula a posição final baseada na direção
       const targetX =
         direction === 1
           ? initialXRef.current - widthRef.current
@@ -191,34 +185,24 @@ const StripeHeroItems = () => {
       controls.start({
         x: targetX,
         transition: {
-          duration: duration,
+          duration,
           ease: "linear",
           repeat: Infinity,
           repeatType: "loop",
-          onComplete: () => {
-            // Redefine a posição inicial para evitar números muito grandes
-            controls.set({ x: initialXRef.current });
-          },
+          onComplete: () => controls.set({ x: initialXRef.current }),
         },
       });
     },
     [controls]
-  ); // Apenas controls como dependência
+  );
 
-  // Função que aplica gradualmente a inércia (desaceleração natural)
   const applyInertia = useCallback(
     (targetDuration: number, startDuration: number, direction: number) => {
-      // Cancela qualquer animação de inércia existente
-      if (animationRef.current) {
-        animationRef.current.stop();
-      }
-
-      // Cria uma animação de transição para a duração (velocidade)
+      animationRef.current?.stop();
       animationRef.current = animate(startDuration, targetDuration, {
-        duration: 1.2, // Tempo de transição para desacelerar (1.2 segundos)
-        ease: "easeOut", // Efeito de desaceleração natural
+        duration: 1.2,
+        ease: "easeOut",
         onUpdate: (value) => {
-          // Atualiza a animação do carousel com o novo valor de duração
           const targetX =
             direction === 1
               ? initialXRef.current - widthRef.current
@@ -231,54 +215,35 @@ const StripeHeroItems = () => {
               ease: "linear",
               repeat: Infinity,
               repeatType: "loop",
-              onComplete: () => {
-                // Redefine a posição inicial para evitar números muito grandes
-                controls.set({ x: initialXRef.current });
-              },
+              onComplete: () => controls.set({ x: initialXRef.current }),
             },
           });
-
-          // Atualiza a referência da velocidade atual
           currentSpeedRef.current = value;
         },
       });
     },
     [controls]
-  ); // Apenas controls como dependência
+  );
 
-  // Inicialização da animação
   useEffect(() => {
     if (containerRef.current) {
       const firstChild = containerRef.current.firstChild as HTMLElement;
       if (firstChild) {
         const singleSetWidth = firstChild.offsetWidth;
         widthRef.current = singleSetWidth;
-
-        // Define a posição inicial como 1/3 do caminho, para ter espaço em ambas direções
         initialXRef.current = -singleSetWidth;
-
-        // Configura a posição inicial
         controls.set({ x: initialXRef.current });
-
-        // Configuração inicial da animação
         startAnimation(baseDurationRef.current, 1);
       }
     }
   }, [controls, startAnimation]);
 
-  // Detecta quando o scroll ocorre e sua direção
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const now = Date.now();
-
-      // Determina a direção do scroll
-      if (currentScrollY > lastScrollYRef.current) {
-        scrollDirectionRef.current = 1; // Scroll para baixo
-      } else if (currentScrollY < lastScrollYRef.current) {
-        scrollDirectionRef.current = -1; // Scroll para cima
-      }
-
+      scrollDirectionRef.current =
+        currentScrollY > lastScrollYRef.current ? 1 : -1;
       lastScrollYRef.current = currentScrollY;
       lastScrollTimeRef.current = now;
       setIsScrolling(true);
@@ -288,18 +253,14 @@ const StripeHeroItems = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Efeito para retornar à velocidade normal após parar de rolar (com inércia)
   useEffect(() => {
     if (!isScrolling) return;
 
     const checkScrollStopped = setInterval(() => {
       const now = Date.now();
       if (now - lastScrollTimeRef.current > 150) {
-        // 150ms sem scroll = parou de rolar
         setIsScrolling(false);
         clearInterval(checkScrollStopped);
-
-        // Aplica inércia para retornar gradualmente à velocidade normal
         applyInertia(
           baseDurationRef.current,
           currentSpeedRef.current,
@@ -311,15 +272,10 @@ const StripeHeroItems = () => {
     return () => clearInterval(checkScrollStopped);
   }, [isScrolling, applyInertia]);
 
-  // Efeito para atualizar a velocidade da animação baseada no scroll (com aceleração gradual)
   useEffect(() => {
     const unsubscribe = scrollVelocity.onChange((latest) => {
       if (!isScrolling) return;
-
-      // Calcula a nova duração (menor valor = animação mais rápida)
       const targetDuration = Math.max(5, baseDurationRef.current - latest * 40);
-
-      // Aplica aceleração gradual em vez de mudança instantânea
       applyInertia(
         targetDuration,
         currentSpeedRef.current,
@@ -330,8 +286,6 @@ const StripeHeroItems = () => {
     return () => unsubscribe();
   }, [scrollVelocity, isScrolling, applyInertia]);
 
-  // Rest of the code remains unchanged
-
   return (
     <div ref={sectionRef} className="overflow-hidden w-full -mt-16 py-16">
       <div className="w-full" style={{ transform: "rotate(-3deg)" }}>
@@ -341,7 +295,7 @@ const StripeHeroItems = () => {
           animate={controls}
           style={{
             x: 0,
-            width: "300%", // Aumentado para ter mais espaço em ambas direções
+            width: "300%",
             display: "flex",
           }}
         >
