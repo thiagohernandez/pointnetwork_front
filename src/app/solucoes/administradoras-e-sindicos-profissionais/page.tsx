@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import { HeroSolutions } from "@/components/ui/hero";
-import { ResourcesContent } from "@/components/ui/sections/resources-content";
 import CenteredContent from "@/components/ui/sections/centered-content";
 
 import { solutionsAdministradorasPage } from "@/data/solutions-data";
