@@ -47,7 +47,7 @@ const DesktopMainNav = () => {
           </DropdownMenuItem>
           <DropdownMenuItem className="font-semibold p-4 text-slate-600 hover:bg-slate-200 hover-text-slate-700 transition-all">
             <Link
-              href="/solucoes/item-2"
+              href="/solucoes/moradores-de-condominio"
               className="w-full flex items-center gap-2 justify-between"
             >
               Moradores de condomínio
@@ -56,7 +56,7 @@ const DesktopMainNav = () => {
           </DropdownMenuItem>
           <DropdownMenuItem className="font-semibold p-4 text-slate-600 hover:bg-slate-200 hover-text-slate-700 transition-all">
             <Link
-              href="/solucoes/item-3"
+              href="/solucoes/controle-de-acesso"
               className="w-full flex items-center gap-2 justify-between"
             >
               Portarias e controle de acesso
@@ -65,7 +65,7 @@ const DesktopMainNav = () => {
           </DropdownMenuItem>
           <DropdownMenuItem className="font-semibold p-4 text-slate-600 hover:bg-slate-200 hover-text-slate-700 transition-all">
             <Link
-              href="/solucoes/item-4"
+              href="/solucoes/gestao-financeira"
               className="w-full flex items-center gap-2 justify-between"
             >
               Gestão financeira de médias e pequenas empresas

@@ -18,11 +18,16 @@ const Header = () => {
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   const SCROLL_THRESHOLD = 10;
+  const BG_THRESHOLD = 50; // Ponto a partir do qual o background aparece
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
+
+    // Set background color based on scroll position
+    setHasScrolled(currentScrollY > BG_THRESHOLD);
 
     // Don't hide header when very close to top (fixes iOS edge cases)
     if (currentScrollY < 10) {
@@ -50,21 +55,8 @@ const Header = () => {
   }, [lastScrollY]);
 
   useEffect(() => {
-    // const handleScroll = () => {
-    //   const currentScrollY = window.scrollY;
-
-    //   // Determine scroll direction
-    //   if (currentScrollY > lastScrollY) {
-    //     // Scrolling down
-    //     setIsVisible(false);
-    //   } else {
-    //     // Scrolling up
-    //     setIsVisible(true);
-    //   }
-
-    //   // Update last scroll position
-    //   setLastScrollY(currentScrollY);
-    // };
+    // Check initial scroll position
+    handleScroll();
 
     // Add scroll event listener
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -82,14 +74,17 @@ const Header = () => {
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           exit={{ y: -100 }}
-          transition={{ type: "tween" }}
-          className={`fixed top-0 left-0 w-full z-50 py-4 transition-all ${
-            isVisible ? "bg-[#170E33]" : "bg-transparent"
+          transition={{ type: "tween", duration: 0.2 }}
+          className={`fixed top-0 left-0 w-full z-50 py-4 transition-colors duration-300 ${
+            hasScrolled ? "bg-[#170E33]" : "bg-transparent"
           }`}
         >
           <Container className="justify-between flex items-center py-4 px-4 lg:px-8">
             <div className="flex items-center gap-6 md:gap-8 lg:gap-10">
-              <Link href="/" className="text-xl font-bold text-white">
+              <Link
+                href="/"
+                className="text-xl font-bold text-white max-w-[162px] [&_svg]:max-w-[100%] [&_svg]:h-auto lg:max-w-[100%]"
+              >
                 <LogoPointNetwork />
               </Link>
 

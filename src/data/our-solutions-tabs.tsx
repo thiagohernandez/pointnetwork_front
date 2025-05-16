@@ -26,7 +26,7 @@ export const tabsSolutionsData: TabData[] = [
       header: "Administradoras e Síndicos profissionais",
       subheader:
         "<strong>Automatize processos e otimize</strong> a gestão condominial com eficiência.",
-      url: "solucoes/administradoras",
+      url: "solucoes/administradoras-e-sindicos-profissionais",
       image: "/user-saas-point-condominio.jpg",
       features: [
         {
@@ -61,7 +61,7 @@ export const tabsSolutionsData: TabData[] = [
       header: "Moradores de condomínio",
       subheader:
         "<strong>Mais praticidade</strong> e conveniência no dia a dia.",
-      url: "solucoes/moradores",
+      url: "solucoes/moradores-de-condominio",
       image: "/user-saas-point-condominio-003.jpg",
       features: [
         {

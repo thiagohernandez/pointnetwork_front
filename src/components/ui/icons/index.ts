@@ -2,6 +2,7 @@ import IconAlert from "./Icon-alert";
 import IconArrowRight from "./Icon-arrow-right";
 import IconBrasilMap from "./Icon-brasil-map";
 import IconCalendar from "./Icon-calendar";
+import IconCloudSecure from "./Icon-cloud-secure";
 import IconDevices from "./Icon-devices";
 import IconDoor from "./Icon-door";
 import IconFacebook from "./Icon-facebook";
@@ -29,6 +30,7 @@ export {
   IconArrowRight,
   IconBrasilMap,
   IconCalendar,
+  IconCloudSecure,
   IconDevices,
   IconDoor,
   IconFacebook,

@@ -6,6 +6,8 @@ import CenteredContent from "@/components/ui/sections/centered-content";
 import { solutionsAdministradorasPage } from "@/data/solutions-data";
 import MainFeaturesList from "@/components/ui/sections/main-features-list";
 import FeaturesBoxes from "@/components/ui/sections/features-boxes";
+import GridFeaturesAdm from "@/components/ui/sections/grid-features-adm";
+import FeaturesVideo from "@/components/ui/sections/features-video";
 
 export const metadata: Metadata = {
   title: "Recursos - Point Network",
@@ -32,10 +34,8 @@ const SolutionsPageItem = () => {
         bgColor={solutionsAdministradorasPage.bgColor}
       />
       <main>
-        <FeaturesBoxes
-          data={solutionsAdministradorasPage.featuresBoxes}
-          className={"pt-52"}
-        />
+        <GridFeaturesAdm className="pt-52 pb-24" />
+        <FeaturesVideo data={solutionsAdministradorasPage.featuresVideo} />
         <CenteredContent
           title={solutionsAdministradorasPage.centeredContent.title}
           description={<DescriptionHtml />}

@@ -49,22 +49,28 @@ const MobileMainNav = () => {
                 </div>
                 <div className="mt-2 ml-4 flex flex-col space-y-1">
                   <Link
-                    href="/solucoes/item-1"
+                    href="/solucoes/administradoras-e-sindicos-profissionais"
                     className="py-2 px-2 text-sm hover:bg-purple-500/10 rounded-md"
                   >
-                    Solução 1
+                    Administradoras e síndicos profissionais
                   </Link>
                   <Link
-                    href="/solucoes/item-2"
+                    href="/solucoes/moradores-de-condominio"
                     className="py-2 px-2 text-sm hover:bg-purple-500/10 rounded-md"
                   >
-                    Solução 2
+                    Moradores de condomínio
                   </Link>
                   <Link
-                    href="/solucoes/item-3"
+                    href="/solucoes/controle-de-acesso"
                     className="py-2 px-2 text-sm hover:bg-purple-500/10 rounded-md"
                   >
-                    Solução 3
+                    Portarias e controle de acesso
+                  </Link>
+                  <Link
+                    href="/solucoes/gestao-financeira"
+                    className="py-2 px-2 text-sm hover:bg-purple-500/10 rounded-md"
+                  >
+                    Gestão financeira de médias e pequenas empresas
                   </Link>
                 </div>
               </div>
