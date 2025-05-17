@@ -51,7 +51,7 @@ const HeroSolutions = ({
             </div>
           </div>
           <div
-            className={`absolute w-[226px] -bottom-4 translate-y-1/2 ${accentColor} [&_svg]:w-full [&_svg]:h-auto`}
+            className={`absolute w-[226px] -bottom-4 translate-y-1/2 ${accentColor} [&_svg]:w-full [&_svg]:h-auto [&_svg]:${accentColor} [&_svg]:!fill-current`}
           >
             <IconLogoP />
           </div>

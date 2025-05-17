@@ -2,12 +2,7 @@ import React from "react";
 import Container from "@/components/ui/container";
 import Image from "next/image";
 
-import {
-  BanknoteArrowUp,
-  ShieldCheckIcon,
-  TrendingUp,
-  TrendingDown,
-} from "lucide-react";
+import { ShieldCheckIcon, TrendingUp, TrendingDown } from "lucide-react";
 import { IconCloudSecure } from "@/components/ui/icons";
 
 import Heading from "@/components/ui/heading";

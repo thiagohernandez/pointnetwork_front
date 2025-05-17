@@ -5,7 +5,6 @@ import CenteredContent from "@/components/ui/sections/centered-content";
 
 import { solutionsAdministradorasPage } from "@/data/solutions-data";
 import MainFeaturesList from "@/components/ui/sections/main-features-list";
-import FeaturesBoxes from "@/components/ui/sections/features-boxes";
 import GridFeaturesAdm from "@/components/ui/sections/grid-features-adm";
 import FeaturesVideo from "@/components/ui/sections/features-video";
 

@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useMemo,
-  useLayoutEffect,
-} from "react";
+import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import {
   motion,
   useScroll,
@@ -15,19 +9,6 @@ import {
   useTransform,
 } from "framer-motion";
 import useWidth from "@/hooks/use-width";
-import { CardFeature } from "@/components/ui/cards";
-import {
-  IconFingerprint,
-  IconUserCheck,
-  IconPackage,
-  IconAlert,
-  IconWhatsApp,
-  IconCalendar,
-  IconKey,
-  IconUsers,
-} from "@/components/ui/icons";
-
-import { AppWindowIcon } from "lucide-react";
 
 import Container from "@/components/ui/container";
 import Heading from "@/components/ui/heading";
@@ -36,6 +17,7 @@ const FeaturesVideo = ({ data }: { data: any }) => {
   const windowWidth = useWidth();
   const [locaWidth, setLocalWidth] = useState(0);
   const [isLargeScreen, setIslargeScreen] = useState(true);
+  const [isYou, setIsYou] = useState(true);
 
   const sectionRef = useRef(null);
   const [currentSet, setCurrentSet] = useState(0);
@@ -44,14 +26,26 @@ const FeaturesVideo = ({ data }: { data: any }) => {
 
   const sectionInVIew = useInView(sectionRef);
 
+  //   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  //     console.log("Page scroll: ", latest);
+  //     if (latest <= 0.33) {
+  //       setCurrentSet(0);
+  //     } else if (latest >= 0.34 && latest <= 0.63) {
+  //       setCurrentSet(1);
+  //     } else if (latest >= 0.64) {
+  //       setCurrentSet(2);
+
+  //     }
+  //   });
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log("Page scroll: ", latest);
-    if (latest <= 0.33) {
+    if (latest <= 0.5) {
       setCurrentSet(0);
-    } else if (latest >= 0.34 && latest <= 0.63) {
+      setIsYou(true);
+    } else if (latest > 0.5) {
       setCurrentSet(1);
-    } else if (latest >= 0.64) {
-      setCurrentSet(2);
+      setIsYou(false);
     }
   });
 
@@ -126,38 +120,64 @@ const FeaturesVideo = ({ data }: { data: any }) => {
                   />
                 )}
               </div>
-              <div className="mt-auto w-full font-semibold grid grid-cols-1 md:grid-cols-3 xl:flex xl:flex-row gap-12 justify-between">
-                {isLargeScreen ? (
-                  data.cardSets[currentSet].map((card: any, index: number) => (
+              <div className="mt-auto w-full">
+                <Heading className="flex gap-2 items-center text-lg text-network-primary font-semibold tracking-tight">
+                  Principais vantages{" "}
+                  {isYou ? (
                     <motion.div
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -50 }}
-                      transition={{ duration: 0.5, delay: 0.1 * index }}
-                      key={`card-featured-animated-${card.id}`}
+                      initial={{ opacity: 0, x: 150 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -150 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                      {card.content}
+                      <span className="rounded-full inline-flex border border-dashed border-network-primary px-3 py-2 text-secondary">
+                        para você
+                      </span>
                     </motion.div>
-                  ))
-                ) : (
-                  <>
-                    {data.cardSets[0].map((card: any, index: number) => (
-                      <div key={`card-featured-animated-${card.id}`}>
-                        {card.content}
-                      </div>
-                    ))}
-                    {data.cardSets[1].map((card: any, index: number) => (
-                      <div key={`card-featured-animated-${card.id}`}>
-                        {card.content}
-                      </div>
-                    ))}
-                    {data.cardSets[2].map((card: any, index: number) => (
-                      <div key={`card-featured-animated-${card.id}`}>
-                        {card.content}
-                      </div>
-                    ))}
-                  </>
-                )}
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0, x: 150 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -150 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                      <span className="rounded-full inline-flex border border-dashed border-network-primary px-3 py-2 text-secondary">
+                        para seus clientes
+                      </span>
+                    </motion.div>
+                  )}
+                </Heading>
+
+                <div className="w-full mt-12 font-semibold grid grid-cols-1 md:grid-cols-3 xl:grid xl:grid-cols-3 gap-12 justify-between">
+                  {isLargeScreen ? (
+                    data.cardSets[currentSet].map(
+                      (card: any, index: number) => (
+                        <motion.div
+                          initial={{ opacity: 0, y: 50 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -50 }}
+                          transition={{ duration: 0.5, delay: 0.1 * index }}
+                          key={`card-featured-animated-${card.id}`}
+                        >
+                          {card.content}
+                        </motion.div>
+                      )
+                    )
+                  ) : (
+                    <>
+                      {data.cardSets[0].map((card: any, index: number) => (
+                        <div key={`card-featured-animated-${card.id}-${index}`}>
+                          {card.content}
+                        </div>
+                      ))}
+                      {data.cardSets[1].map((card: any, index: number) => (
+                        <div key={`card-featured-animated-${card.id}-${index}`}>
+                          {card.content}
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </div>
               </div>
             </div>
             <div className="shrink-0">
