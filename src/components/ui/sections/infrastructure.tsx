@@ -159,7 +159,7 @@ const Infrastructure = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.3, type: "spring" }}
                 viewport={{ once: true }}
-                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-network-primary"
               >
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }}

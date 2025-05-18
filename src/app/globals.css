@@ -214,6 +214,15 @@ body {
   @apply outline-none;
 }
 
+.masking-scan {
+  object-fit: cover;
+  -webkit-mask-box-image: url(/pMaskSmall.svg);
+  -webkit-mask-size: "268px 416px";
+  mask-size: "268px 416px";
+  -webkit-mask-repeat: "no-repeat";
+  mask-repeat: "no-repeat";
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

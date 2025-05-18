@@ -1,4 +1,4 @@
-import { IconDevices } from "@/components/ui/icons";
+import { IconDevices, IconFaceID } from "@/components/ui/icons";
 import {
   MessagesSquareIcon,
   MonitorSmartphoneIcon,
@@ -314,6 +314,40 @@ export const solutionsControleAcessoPage = {
   productURL: "pointid.com.br",
   accentColor: "text-id-green",
   bgColor: "bg-id-gray-dark",
+  integrationBrands: {
+    title: "Integração com os melhores equipamentos do mercado",
+    description:
+      "A PointID já nasce pronta, integrada com hardware de reconhecimento facial e biométrico com os melhores equipamentos do mercado, como Control ID, Intelbras e Hikvision.",
+    icon: <IconFaceID />,
+    brands: [
+      {
+        name: "HK Vision",
+        src: "/brands/Hikvision_logo.svg",
+        width: 178,
+        height: 24,
+      },
+      {
+        name: "Control ID",
+        src: "/brands/logoControliD.svg",
+        width: 147,
+        height: 24,
+      },
+      {
+        name: "Intelbras",
+        src: "/brands/intelbras.svg",
+        width: 117,
+        height: 24,
+      },
+    ],
+  },
+  backgroundChecker: {
+    title: "Background checker",
+    subtitle: "Mais segurança e tranquilidade para o seu condomínio.",
+    content1:
+      "A verificação de antecedentes criminais, mandados de prisão e processos judiciais <strong>é uma ferramenta eficaz para identificar possíveis riscos antes que se tornem ameaças concretas.</strong>",
+    content2:
+      "Essa prática assegura que apenas pessoas com um histórico confiável tenham acesso ao seu ambiente de convivência, <strong>promovendo mais segurança e tranquilidade para todos.</strong>",
+  },
   featuresBoxes: [
     {
       icon: <IconDevices />,
@@ -343,74 +377,41 @@ export const solutionsControleAcessoPage = {
     },
   ],
   centeredContent: {
-    title: "A central digital do seu condomínio",
+    title: "Software de gestão de portarias",
     description:
-      "Com o PointCondomínio, os moradores podem desfrutar de um módulo de convivência completo, com aplicativo do condômino que oferece segunda via de boletos, reserva de áreas comuns, acesso a documentos, livro de ocorrências, mensagens e notificações, assembleia online e muito mais.",
+      "Reduza a carga da equipe de suporte e proporcione mais controle e agilidade aos clientes.",
     ctaLink: "#contact",
     cxtaText: "Fale com um especialista",
-    video: "/videos/pointcondominio-solutions-video-moradores.mp4",
+    video: "/videos/pointid-app.mp4",
   },
   mainFeatures: [
     {
-      content: "Reserva de áreas comuns",
+      content: "Controle de acessos",
     },
     {
-      content: "2ª via de boleto",
+      content: "Registro de ocorrências e notificações automáticas",
     },
     ,
     {
-      content: "Eventos",
+      content: "Histórico de visitas",
     },
     {
-      content: "Quadro de avisos",
+      content: "Registro e liberação de visitantes",
     },
     {
-      content: "Livro de ocorrências",
+      content: "Chat integrado com WhatsApp",
     },
     {
-      content: "Telefones uteís",
+      content: "Acompanhamento de eventos e reservas de áreas comuns",
     },
     {
-      content: "Controle de contratos",
+      content: "Gestão de encomendas e chaves",
     },
     {
-      content: "Livro de ocorrências",
+      content: "Dashboard intuitivo",
     },
     {
-      content: "Enquetes e votação online",
-    },
-    {
-      content: "Classificados",
-    },
-    {
-      content: "Calendário de manutenção periódica",
-    },
-    {
-      content: "Cadastro de funcionários",
-    },
-    {
-      content: "Galeria de fotos",
-    },
-    {
-      content: "Obras e evidências",
-    },
-    {
-      content: "Prestação de contas",
-    },
-    {
-      content: "Avisos de infrações",
-    },
-    {
-      content: "Mensagens",
-    },
-    {
-      content: "Documentos da administração",
-    },
-    {
-      content: "Guia do comércio",
-    },
-    {
-      content: "Assembléia online",
+      content: "Gestão de perfis de acessos",
     },
   ],
   slug: "moradores-de-condominio",

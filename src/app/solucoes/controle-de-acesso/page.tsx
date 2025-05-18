@@ -3,12 +3,11 @@ import type { Metadata } from "next";
 import { HeroSolutions } from "@/components/ui/hero";
 import CenteredContent from "@/components/ui/sections/centered-content";
 
-import {
-  solutionsControleAcessoPage,
-  solutionsMoradoresPage,
-} from "@/data/solutions-data";
+import { solutionsControleAcessoPage } from "@/data/solutions-data";
 import MainFeaturesList from "@/components/ui/sections/main-features-list";
-import FeaturesBoxes from "@/components/ui/sections/features-boxes";
+import GridFeaturesAccessControl from "@/components/ui/sections/grid-features-access-control";
+import IntegrationsList from "@/components/ui/sections/integrations-list";
+import BackgroundChecker from "@/components/ui/sections/background-checker";
 
 export const metadata: Metadata = {
   title: "Recursos - Point Network",
@@ -35,16 +34,20 @@ const SolutionsPageItem = () => {
         bgColor={solutionsControleAcessoPage.bgColor}
       />
       <main>
-        <FeaturesBoxes
-          data={solutionsMoradoresPage.featuresBoxes}
-          className={"pt-52"}
+        <GridFeaturesAccessControl className="pt-52 pb-24" />
+        <IntegrationsList
+          data={solutionsControleAcessoPage.integrationBrands}
+          className="pb-52"
+        />
+        <BackgroundChecker
+          data={solutionsControleAcessoPage.backgroundChecker}
         />
         <CenteredContent
-          title={solutionsMoradoresPage.centeredContent.title}
+          title={solutionsControleAcessoPage.centeredContent.title}
           description={<DescriptionHtml />}
-          video={solutionsMoradoresPage.centeredContent.video}
+          video={solutionsControleAcessoPage.centeredContent.video}
         />
-        <MainFeaturesList features={solutionsMoradoresPage.mainFeatures} />
+        <MainFeaturesList features={solutionsControleAcessoPage.mainFeatures} />
       </main>
     </>
   );
