@@ -55,6 +55,7 @@ export interface FeaturesBoxItem {
     width: number;
     height: number;
   };
+  uiAnimation?: any;
   backgroundColor?: string;
   backgroundImage?: string;
   textColor: string;

@@ -3,6 +3,7 @@ import {
   MessagesSquareIcon,
   MonitorSmartphoneIcon,
   QrCode,
+  ReceiptTextIcon,
   SmilePlusIcon,
 } from "lucide-react";
 
@@ -23,6 +24,7 @@ export const solutionsAdministradorasPage = {
       "Tudo em um só lugar, <strong>o sistema de gestão condominial mais completo</strong> do mercado.",
     bgColor: "#F1F5F9",
     video: "/videos/pointID-boa-vizinhanca.mp4",
+    showFeatturesTitle: true,
     cardSets: [
       [
         {
@@ -142,7 +144,6 @@ export const solutionsAdministradorasPage = {
     {
       content: "EFD-Reinf",
     },
-    ,
     {
       content: "Book digital",
     },
@@ -216,6 +217,12 @@ export const solutionsMoradoresPage = {
         width: 489,
         height: 326,
       },
+      uiAnimation: {
+        src: "/feature-anim-moradores-001.svg",
+        width: 242,
+        height: 72,
+        position: "left-[15%] bottom-6  max-w-[220px] lg:max-w-[242px]",
+      },
       backgroundColor: "bg-porcelain/50",
       textColor: "text-id-gray-dark",
     },
@@ -228,6 +235,12 @@ export const solutionsMoradoresPage = {
         src: "/bg-pointcondominio-box-solution-002.png",
         width: 358,
         height: 316,
+      },
+      uiAnimation: {
+        src: "/feature-anim-moradores-002.svg",
+        width: 242,
+        height: 72,
+        position: "right-[15%] bottom-6  max-w-[220px] lg:max-w-[242px]",
       },
       backgroundColor: "bg-network-primary",
       textColor: "text-white",
@@ -248,7 +261,6 @@ export const solutionsMoradoresPage = {
     {
       content: "2ª via de boleto",
     },
-    ,
     {
       content: "Eventos",
     },
@@ -391,7 +403,6 @@ export const solutionsControleAcessoPage = {
     {
       content: "Registro de ocorrências e notificações automáticas",
     },
-    ,
     {
       content: "Histórico de visitas",
     },
@@ -414,5 +425,152 @@ export const solutionsControleAcessoPage = {
       content: "Gestão de perfis de acessos",
     },
   ],
-  slug: "moradores-de-condominio",
+  slug: "controle-de-acesso",
+};
+
+export const solutionsGestaoFinanceiraPage = {
+  id: "solutionsPage4",
+  title: "Tenha o controle financeiro em suas mãos",
+  desc: "O PointSaaS oferece as ferramentas certas para o controle do seu futuro financeiro. Nosso sistema foi desenvolvido para que você possa organizar informações com segurança, administrar seu faturamento e acompanhar a saúde financeira do seu negócio com praticidade.",
+  productURL: "pointsaas.com.br",
+  accentColor: "text-saas-orange--light",
+  bgColor: "bg-[#DB4604]",
+  featuresBoxes: [
+    {
+      icon: <IconDevices />,
+      title: "100% online",
+      description:
+        "Gerencie sua empresa de qualquer lugar e dispositivo em um sistema seguro e 100% online.",
+      uiAnimation: {
+        src: "/feature-anim-saas-001.svg",
+        width: 388,
+        height: 138,
+        position:
+          "left-[5%] top-1/2 -translate-y-1/2 max-w-[220px] lg:max-w-[388px]",
+      },
+      backgroundColor: "bg-id-gray-dark",
+      backgroundImage: "/bg-saas-card-features.jpg",
+      textColor: "text-white",
+    },
+    {
+      icon: <ReceiptTextIcon />,
+      title: "Rapidez nas cobranças e pagamentos",
+      description:
+        "Emita notas fiscais e use nossas ferramentas para notificar inadimplentes e receber pagamentos com PIX e Boleto.",
+      img: {
+        src: "/saas-card-feature-002.svg",
+        width: 587,
+        height: 310,
+      },
+      uiAnimation: {
+        src: "/feature-anim-saas-002.svg",
+        width: 350,
+        height: 208,
+        position: "-right-2 top-2 max-w-[220px] lg:max-w-[350px]",
+      },
+      backgroundColor: "bg-saas-orange--light",
+      textColor: "text-id-gray-dark",
+    },
+  ],
+  featuresVideo: {
+    title: "A última palavra de software de controle financeiro é PointSaas.",
+    description:
+      "Com uma <strong>implementação segura, rápida e intuitiva</strong>, nosso sistema permite que você foque no crescimento da sua empresa.",
+    bgColor: "#EDEBE1",
+    bgColorEnd: "#FDFAED",
+    video: "/videos/point-sass-office.mp4",
+    titleColor: "text-saas-orange--dark",
+    cardSets: [
+      [
+        {
+          id: 1,
+          content: (
+            <CardFeature
+              title="Tenha controle das finanças"
+              icon={<LandmarkIcon />}
+              className="![&_card-content]:text-[#36583F]"
+            >
+              <p>
+                Oferecemos uma ampla solução para automatizar 100% do seu
+                financeiro, otimizando o tempo e garantindo dados confiáveis.
+              </p>
+            </CardFeature>
+          ),
+        },
+        {
+          id: 2,
+          content: (
+            <CardFeature
+              title="Central de notificações"
+              icon={<HandCoinsIcon />}
+            >
+              <p>
+                Notificações automáticas de cobrança, pagamentos, contratos e
+                acessos.
+              </p>
+            </CardFeature>
+          ),
+        },
+      ],
+    ],
+  },
+  centeredContent: {
+    title: "Descomplique com pointSaaS",
+    description:
+      "Nosso sistema oferece uma solução cloud completa de gestão financeira online, onde poderá realizar todas as rotinas de gestão financeira, gerar relatórios, combater a inadimplência e ter valiosos insights de gastos e oportunidades de economizar.",
+    ctaLink: "#contact",
+    cxtaText: "Fale com um especialista",
+    video: "/videos/point-saas-app.mp4",
+  },
+  mainFeatures: [
+    {
+      content: "Integração com a prefeitura",
+    },
+    {
+      content: "Programar descontos",
+    },
+    {
+      content: "Gerar notas fiscais",
+    },
+    {
+      content: "Enviar boletos",
+    },
+    {
+      content: "Relatório de recebimento",
+    },
+    {
+      content: "Gestão de contratos",
+    },
+    {
+      content: "Régua de cobrança por WhatsApp e e-mail",
+    },
+    {
+      content: "Dashboard de gestão",
+    },
+    {
+      content: "Cadastro de serviços NFs",
+    },
+    {
+      content: "Integração com conta bancária digital Zoop",
+    },
+    {
+      content: "Relatório de pagamentos",
+    },
+    {
+      content: "Relatório de inadimplência",
+    },
+    {
+      content: "Relatório de fluxo de caixa",
+    },
+    {
+      content: "Relatório de extrato e conciliação",
+    },
+    {
+      content: "Relatório de previsão de recebimento",
+    },
+    {
+      content: "Balancete mensal e anual",
+    },
+  ],
+  slug: "gestao-financeira",
 };

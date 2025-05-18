@@ -39,12 +39,14 @@ const FeaturesVideo = ({ data }: { data: any }) => {
   //   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("Page scroll: ", latest);
     if (latest <= 0.5) {
       setCurrentSet(0);
       setIsYou(true);
     } else if (latest > 0.5) {
-      setCurrentSet(1);
+      // Verificação mais segura
+      if (data.cardSets && data.cardSets.length > 1) {
+        setCurrentSet(1);
+      }
       setIsYou(false);
     }
   });
@@ -52,7 +54,7 @@ const FeaturesVideo = ({ data }: { data: any }) => {
   const bgColor = useTransform(
     scrollYProgress,
     [0, 1],
-    [data.bgColor, "#ffffff"]
+    [data.bgColor, data.bgColorEnd ? data.bgColorEnd : "#ffffff"]
   );
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 10]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.75]);
@@ -102,7 +104,9 @@ const FeaturesVideo = ({ data }: { data: any }) => {
                 {data?.title && (
                   <Heading
                     headingLevel={3}
-                    className="text-secondary text-3xl max-w-md mb-8"
+                    className={`${
+                      data.titleColor ? data.titleColor : "text-secondary"
+                    } text-3xl max-w-md mb-8`}
                   >
                     <div
                       dangerouslySetInnerHTML={{
@@ -121,33 +125,34 @@ const FeaturesVideo = ({ data }: { data: any }) => {
                 )}
               </div>
               <div className="mt-auto w-full">
-                <Heading className="flex gap-2 items-center text-lg text-network-primary font-semibold tracking-tight">
-                  Principais vantages{" "}
-                  {isYou ? (
-                    <motion.div
-                      initial={{ opacity: 0, x: 150 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -150 }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                    >
-                      <span className="rounded-full inline-flex border border-dashed border-network-primary px-3 py-2 text-secondary">
-                        para você
-                      </span>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      initial={{ opacity: 0, x: 150 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -150 }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                    >
-                      <span className="rounded-full inline-flex border border-dashed border-network-primary px-3 py-2 text-secondary">
-                        para seus clientes
-                      </span>
-                    </motion.div>
-                  )}
-                </Heading>
-
+                {data?.showFeatturesTitle && (
+                  <Heading className="flex gap-2 items-center text-lg text-network-primary font-semibold tracking-tight">
+                    Principais vantages{" "}
+                    {isYou ? (
+                      <motion.div
+                        initial={{ opacity: 0, x: 150 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -150 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                      >
+                        <span className="rounded-full inline-flex border border-dashed border-network-primary px-3 py-2 text-secondary">
+                          para você
+                        </span>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        initial={{ opacity: 0, x: 150 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -150 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                      >
+                        <span className="rounded-full inline-flex border border-dashed border-network-primary px-3 py-2 text-secondary">
+                          para seus clientes
+                        </span>
+                      </motion.div>
+                    )}
+                  </Heading>
+                )}
                 <div className="w-full mt-12 font-semibold grid grid-cols-1 md:grid-cols-3 xl:grid xl:grid-cols-3 gap-12 justify-between">
                   {isLargeScreen ? (
                     data.cardSets[currentSet].map(
@@ -165,16 +170,22 @@ const FeaturesVideo = ({ data }: { data: any }) => {
                     )
                   ) : (
                     <>
-                      {data.cardSets[0].map((card: any, index: number) => (
-                        <div key={`card-featured-animated-${card.id}-${index}`}>
-                          {card.content}
-                        </div>
-                      ))}
-                      {data.cardSets[1].map((card: any, index: number) => (
-                        <div key={`card-featured-animated-${card.id}-${index}`}>
-                          {card.content}
-                        </div>
-                      ))}
+                      {data.cardSets[0] &&
+                        data.cardSets[0].map((card: any, index: number) => (
+                          <div
+                            key={`card-featured-animated-${card.id}-${index}`}
+                          >
+                            {card.content}
+                          </div>
+                        ))}
+                      {data.cardSets[1] &&
+                        data.cardSets[1].map((card: any, index: number) => (
+                          <div
+                            key={`card-featured-animated-${card.id}-${index}`}
+                          >
+                            {card.content}
+                          </div>
+                        ))}
                     </>
                   )}
                 </div>
