@@ -2,6 +2,9 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Metadata } from "next";
 
+import Footer from "@/components/ui/footer/footer";
+import { Header } from "@/components/ui/header";
+
 // Componentes
 import { cn } from "@/lib/utils";
 import Container from "@/components/ui/container";
@@ -73,6 +76,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
   return (
     <>
+      <Header />
       <HeroResources
         title={resourceData.title}
         description={resourceData.description}
@@ -182,6 +186,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
         </div>
       </main>
       <BlogLastsPosts />
+      <Footer />
     </>
   );
 }

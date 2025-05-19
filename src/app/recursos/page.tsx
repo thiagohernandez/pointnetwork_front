@@ -1,5 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
+import Footer from "@/components/ui/footer/footer";
+import { Header } from "@/components/ui/header";
 import { HeroBasic } from "@/components/ui/hero";
 import { ResourcesContent } from "@/components/ui/sections/resources-content";
 
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 const Recursos = () => {
   return (
     <>
+      <Header />
       <HeroBasic
         title="Recursos"
         description="Sabemos que gestão é coisa séria e não é tarefa fácil. Por isso, criamos conteúdos gratuitos para te ajudar"
@@ -18,6 +21,7 @@ const Recursos = () => {
       <main className="bg-slate-300 py-16 lg:py-32">
         <ResourcesContent />
       </main>
+      <Footer />
     </>
   );
 };

@@ -1,5 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
+import Footer from "@/components/ui/footer/footer";
+import { Header } from "@/components/ui/header";
 import { HeroSolutions } from "@/components/ui/hero";
 import CenteredContent from "@/components/ui/sections/centered-content";
 
@@ -25,6 +27,7 @@ const DescriptionHtml = () => (
 const SolutionsPageItem = () => {
   return (
     <>
+      <Header />
       <HeroSolutions
         title={solutionsAdministradorasPage.title}
         description={solutionsAdministradorasPage.desc}
@@ -44,6 +47,7 @@ const SolutionsPageItem = () => {
           features={solutionsAdministradorasPage.mainFeatures}
         />
       </main>
+      <Footer />
     </>
   );
 };
