@@ -38,7 +38,7 @@ export function generateMetadata({
     openGraph: {
       title,
       description,
-      images: [{ url: ogImage }],
+      images: [{ url: ogImageUrl }],
       url: ogUrl,
       type: "website",
     },
@@ -46,7 +46,7 @@ export function generateMetadata({
       card: twitterCard,
       title,
       description,
-      images: [ogImage],
+      images: [{ url: ogImageUrl }],
       ...(twitterHandle && { creator: twitterHandle }),
     },
     alternates: {
