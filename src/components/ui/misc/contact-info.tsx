@@ -3,7 +3,7 @@ import StatusHour from "@/components/ui/misc/status-hour";
 
 const ContactInfo = () => {
   return (
-    <div className="lg:w-1/3 bg-slate-200 p-16 rounded-b-lg lg:rounded-b-none lg:rounded-r-lg text-left tracking-tight">
+    <div className="lg:w-1/3 bg-slate-200 px-6 py-8 lg:px-16 lg:py-16 rounded-tr-none rounded-bl-lg rounded-br-lg lg:rounded-br-lg lg:rounded-tr-lg text-left tracking-tight">
       <h2 className="text-xs tracking-wider font-bold text-slate-800 mb-6">
         POINT CONDOMÍNIO
       </h2>

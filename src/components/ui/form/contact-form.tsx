@@ -64,13 +64,31 @@ export default function ContactForm({
   async function onSubmit(data: FormValues) {
     setIsSubmitting(true);
 
-    // Simulando envio do formulário
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
     console.log(data);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    form.reset();
+
+    // Simulando envio do formulário
+    // await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    try {
+      const response = await fetch(
+        "https://pointid.com.br/api/send-email.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      if (response.ok) {
+        form.reset();
+      } else {
+      }
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }
   }
 
   return (
