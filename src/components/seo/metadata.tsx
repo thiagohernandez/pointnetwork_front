@@ -46,7 +46,7 @@ export function generateMetadata({
       card: twitterCard,
       title,
       description,
-      images: [{ url: ogImageUrl }],
+      images: [ogImageUrl],
       ...(twitterHandle && { creator: twitterHandle }),
     },
     alternates: {

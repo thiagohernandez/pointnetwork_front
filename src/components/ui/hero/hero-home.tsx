@@ -2,7 +2,7 @@ import React from "react";
 import StripeHeroItems from "@/components/ui/misc/stripe-hero-items";
 
 import { IconFiveStars } from "@/components/ui/icons";
-import Scene from "@/components/ui/scene/scene";
+// import Scene from "@/components/ui/scene/scene";
 
 const HeroHome = () => {
   return (
@@ -30,9 +30,9 @@ const HeroHome = () => {
 
         <StripeHeroItems />
       </div>
-      <div className="w-full h-full absolute top-0 left-0 z-[-1]">
+      {/* <div className="w-full h-full absolute top-0 left-0 z-[-1]">
         <Scene />
-      </div>
+      </div> */}
     </div>
   );
 };
