@@ -11,9 +11,9 @@ const ContactInfo = () => {
       <div className="space-y-6">
         <div className="flex items-start gap-2 text-sm text-slate-700">
           <address className="not-italic">
-            <p>Rua Padre Roque, 1110 - Sala 11</p>
-            <p>Jardim áurea - Mogi Mirim - SP</p>
-            <p>CEP: 04101-300</p>
+            <p>Rua Treze de Maio, 235</p>
+            <p>Mogi Mirim - SP</p>
+            <p>CEP: 13800-170</p>
           </address>
         </div>
 
@@ -49,7 +49,7 @@ const ContactInfo = () => {
           <div className="flex items-start gap-2 text-slate-700 text-sm">
             <div>
               <p>
-                <strong>Segunda - Sexta:</strong> 9h00 às 18h00
+                <strong>Segunda - Sexta:</strong> 9h00 às 18h30
               </p>
               <p>
                 <strong>Sábado, Domingo e Feriados:</strong> Fechado

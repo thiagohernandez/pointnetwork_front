@@ -2,19 +2,26 @@
 
 import { useRef, useEffect } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import Container from "@/components/ui/container";
 import Heading from "@/components/ui/heading";
 
 interface HeroVideoProps {
-  videoSrc: string;
+  videoSrc?: string;
   posterSrc?: string;
   playbackRate?: number;
+  imgSrc?: string;
+  width?: number;
+  height?: number;
 }
 
 export function FullVideoBackground({
   videoSrc,
   posterSrc,
   playbackRate = 0.5,
+  imgSrc,
+  width = 1920,
+  height = 1080,
 }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -40,31 +47,49 @@ export function FullVideoBackground({
   return (
     <section className="relative w-full h-[80vh] overflow-hidden">
       {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={posterSrc || "/placeholder.svg?height=1080&width=1920"}
-          className="object-cover w-full h-full"
-          //   style={{
-          //     opacity: isVideoLoaded ? 1 : 0,
-          //     transition: "opacity 0.5s ease",
-          //   }}
-        >
-          <source
-            src={videoSrc}
-            // src="/videos/8817770-hd_1280_720_25fps.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+      {videoSrc && (
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={posterSrc || "/placeholder.svg?height=1080&width=1920"}
+            className="object-cover w-full h-full"
+            //   style={{
+            //     opacity: isVideoLoaded ? 1 : 0,
+            //     transition: "opacity 0.5s ease",
+            //   }}
+          >
+            <source
+              src={videoSrc}
+              // src="/videos/8817770-hd_1280_720_25fps.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
 
-        {/* Overlay to darken/tint the video */}
-        <div className="absolute inset-0 bg-network-primary/30"></div>
-      </div>
+          {/* Overlay to darken/tint the video */}
+          <div className="absolute inset-0 bg-network-primary/30"></div>
+        </div>
+      )}
+
+      {imgSrc && (
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={imgSrc || "/placeholder.svg?height=1080&width=1920"}
+            alt="Background Image"
+            width={width}
+            height={height}
+            className="object-cover w-full h-full grayscale opacity-50"
+            quality={100}
+          />
+
+          {/* Overlay to darken/tint the video */}
+          <div className="absolute inset-0 bg-network-primary/80"></div>
+        </div>
+      )}
 
       {/* Content */}
       <Container className="relative h-full container mx-auto px-4 flex flex-col justify-center">
@@ -72,7 +97,7 @@ export function FullVideoBackground({
           <Heading
             headingLevel={3}
             variant="headline"
-            className="text-secondary mb-2 pt-1"
+            className="text-slate-200 mb-2 pt-1"
           >
             <motion.span
               initial={{ opacity: 0, y: 20 }}

@@ -17,7 +17,7 @@ import FeaturesVideo from "@/components/ui/sections/features-video";
 import { generateMetadata } from "@/components/seo/metadata";
 
 export const metadata: Metadata = generateMetadata({
-  title: "Sistema contabíl para pequenas e médias empresas | PointNetwork",
+  title: "Sistema contábil para pequenas e médias empresas | PointNetwork",
   keywords: [
     "Sistema contábil",
     "Sistema para pequenas e médias empresas",

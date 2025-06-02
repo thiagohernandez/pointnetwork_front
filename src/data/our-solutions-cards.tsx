@@ -27,7 +27,7 @@ export const ourSolutionsCardsData = [
   },
   {
     id: "ourSolutionsCards3",
-    title: "Gestão contabíl",
+    title: "Gestão contábil",
     productName: "PointSaas",
     desc: "Automatize processos e tenha controle total da gestão financeira da sua empresa com nosso software intuitivo e 100% online.",
     icon: <LogoPointSaas />,

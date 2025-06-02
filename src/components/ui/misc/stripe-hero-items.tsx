@@ -8,6 +8,7 @@ import {
   animate,
   AnimationPlaybackControls,
 } from "motion/react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { IconPackage, IconKey, IconAlert } from "@/components/ui/icons";
 import { HousePlug, MoveUpRight, PiggyBank } from "lucide-react";
@@ -76,7 +77,7 @@ const cardSets = [
       </div>
       <div className="cardAlert__content leading-none relative">
         <div className="inline-flex text-[11px] font-semibold py-0.5 px-2 rounded-lg tracking-tight text-green-500 bg-green-200/40">
-          Taxa de inadinimplência
+          Taxa de inadimplência
         </div>
         <h3 className="text-id-gray-darker tracking-tight font-medium text-sm mt-0.5">
           3.25%
@@ -145,7 +146,7 @@ const cardSets = [
   </div>,
 ];
 
-const StripeHeroItems = () => {
+const StripeHeroItems = ({ className }: { className?: string }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const widthRef = useRef<number>(0);
@@ -281,7 +282,10 @@ const StripeHeroItems = () => {
   }, [scrollVelocity, isScrolling, applyInertia]);
 
   return (
-    <div ref={sectionRef} className="overflow-hidden w-full -mt-16 py-16">
+    <div
+      ref={sectionRef}
+      className={cn("overflow-hidden w-full -mt-16 py-16", className)}
+    >
       <div className="w-full" style={{ transform: "rotate(-3deg)" }}>
         <motion.div
           ref={containerRef}

@@ -155,8 +155,11 @@ export default function Home() {
         </div>
       </Container>
       <FullVideoBackground
-        videoSrc="/videos/8817770-hd_1280_720_25fps.mp4"
-        posterSrc="/placeholder.svg?height=1080&width=1920"
+        // videoSrc="/videos/8817770-hd_1280_720_25fps.mp4"
+        // posterSrc="/placeholder.svg?height=1080&width=1920"
+        imgSrc="/pexels-cristian-rojas-7616804.jpg"
+        width={1920}
+        height={1281}
       />
       <Container className="py-16 lg:py-32">
         <div className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-8">

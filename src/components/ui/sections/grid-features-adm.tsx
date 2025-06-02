@@ -120,7 +120,7 @@ const GridFeaturesAdm = ({ className }: { className?: string }) => {
                 Realizar consultas de segurança com o Point Condomínio antes de
                 liberar o acesso de novos colaboradores, prestadores de serviço
                 ou visitantes ao seu condomínio é essencial para proteger tanto
-                o ambiente quanto a reputação da sua administratora. Essa medida
+                o ambiente quanto a reputação da sua administradora. Essa medida
                 preventiva ajuda a mitigar riscos e evitar possíveis ameaças à
                 segurança.
               </p>

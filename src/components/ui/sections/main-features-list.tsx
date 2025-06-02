@@ -6,8 +6,6 @@ import Heading from "@/components/ui/heading";
 
 const MainFeaturesList = ({ features }: { features: any }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Refs for motion containers
   const containerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const controls = useRef([
     useAnimationControls(),
@@ -15,121 +13,201 @@ const MainFeaturesList = ({ features }: { features: any }) => {
     useAnimationControls(),
   ]);
 
-  // Stable arrays using useMemo
-  const directions = useMemo(() => [1, -1, 1], []);
-  const speeds = useMemo(() => [60, 80, 70], []);
+  // Estado para controlar se as animações estão ativas
+  const isAnimatingRef = useRef(true);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isScrollingRef = useRef(false);
 
-  // Animation speed adjuster with skew effect
-  const adjustSpeed = useCallback(
-    (multiplier: number, skewAmount: number = 0) => {
+  // Configurações estáveis
+  const config = useMemo(
+    () => ({
+      directions: [1, -1, 1] as const,
+      baseSpeeds: [60, 80, 70] as const,
+      scrollMultiplier: 0.3,
+      scrollSkew: -2,
+      normalSkew: 0,
+      scrollDebounceMs: 150,
+    }),
+    []
+  );
+
+  // Função otimizada para calcular dimensões
+  const getContainerDimensions = useCallback((container: HTMLElement) => {
+    const firstChild = container.children[0] as HTMLElement;
+    if (!firstChild) return null;
+
+    return {
+      contentWidth: firstChild.offsetWidth,
+      containerWidth: container.offsetWidth,
+    };
+  }, []);
+
+  // Função principal para controlar animações
+  const updateAnimations = useCallback(
+    (
+      speedMultiplier: number = 1,
+      skewAmount: number = 0,
+      force: boolean = false
+    ) => {
+      if (!isAnimatingRef.current && !force) return;
+
       containerRefs.current.forEach((container, index) => {
         if (!container) return;
 
-        const contentWidth = (container.children[0] as HTMLElement).offsetWidth;
-        const newDuration = speeds[index] * multiplier;
+        const dimensions = getContainerDimensions(container);
+        if (!dimensions) return;
 
-        const currentX = parseFloat(
-          container.style.transform
-            ?.replace("translateX(", "")
-            .replace("px)", "") || "0"
-        );
+        const { contentWidth } = dimensions;
+        const direction = config.directions[index];
+        const baseSpeed = config.baseSpeeds[index];
+        const adjustedSpeed = baseSpeed * speedMultiplier;
 
-        const startX = directions[index] > 0 ? 0 : -contentWidth;
-        const endX = directions[index] > 0 ? -contentWidth : 0;
-        const totalDistance = Math.abs(endX - startX);
-        const distanceTraveled = Math.abs(currentX - startX);
-        const progress = distanceTraveled / totalDistance;
-        const remainingDuration = newDuration * (1 - progress);
-        const skewDirection = directions[index];
+        // Calcular posições de início e fim
+        const startX = direction > 0 ? 0 : -contentWidth;
+        const endX = direction > 0 ? -contentWidth : 0;
 
+        // Se estamos forçando uma reinicialização, definir posição inicial
+        if (force) {
+          controls.current[index].set({ x: startX, skewX: 0 });
+        }
+
+        // Aplicar animação
         controls.current[index].start({
           x: endX,
-          skewX: skewDirection * skewAmount * 2,
+          skewX: direction * skewAmount,
           transition: {
             x: {
-              duration: remainingDuration,
+              duration: adjustedSpeed,
               ease: "linear",
               repeat: Infinity,
               repeatType: "loop",
             },
             skewX: {
-              duration: 0.4,
+              duration: 0.3,
               ease: "easeOut",
             },
           },
         });
       });
     },
-    [directions, speeds]
+    [config, getContainerDimensions]
   );
 
-  // Initial animation setup
+  // Handler otimizado para scroll com debounce
+  const handleScroll = useCallback(() => {
+    if (!isAnimatingRef.current) return;
+
+    // Marcar que estamos fazendo scroll
+    isScrollingRef.current = true;
+
+    // Aplicar efeito de scroll imediatamente
+    updateAnimations(config.scrollMultiplier, config.scrollSkew);
+
+    // Limpar timeout anterior
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    // Restaurar animação normal após o debounce
+    scrollTimeoutRef.current = setTimeout(() => {
+      if (isAnimatingRef.current) {
+        isScrollingRef.current = false;
+        updateAnimations(1, config.normalSkew);
+      }
+    }, config.scrollDebounceMs);
+  }, [updateAnimations, config]);
+
+  // Setup inicial das animações
   useEffect(() => {
-    let isActive = true;
+    const setupTimeout = setTimeout(() => {
+      if (isAnimatingRef.current) {
+        updateAnimations(1, 0, true);
+      }
+    }, 100); // Pequeno delay para garantir que o DOM está pronto
 
-    const setupAnimations = () => {
-      if (!isActive) return;
+    return () => {
+      clearTimeout(setupTimeout);
+    };
+  }, [updateAnimations]);
 
-      containerRefs.current.forEach((container, index) => {
-        if (!container || !isActive) return;
+  // Listener de scroll otimizado
+  useEffect(() => {
+    let rafId: number;
+    let isThrottled = false;
 
-        const children = container.children;
-        if (children.length === 0) return;
+    const throttledScrollHandler = () => {
+      if (isThrottled) return;
 
-        const contentWidth = (children[0] as HTMLElement).offsetWidth;
-        const direction = directions[index];
-        const speed = speeds[index];
-        const startX = direction > 0 ? 0 : -contentWidth;
-        const endX = direction > 0 ? -contentWidth : 0;
+      isThrottled = true;
+      rafId = requestAnimationFrame(() => {
+        handleScroll();
+        isThrottled = false;
+      });
+    };
 
-        controls.current[index].set({ x: startX });
+    window.addEventListener("scroll", throttledScrollHandler, {
+      passive: true,
+      capture: false,
+    });
 
-        controls.current[index].start({
-          x: endX,
-          transition: {
-            duration: speed,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "loop",
-          },
+    return () => {
+      window.removeEventListener("scroll", throttledScrollHandler);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [handleScroll]);
+
+  // Cleanup ao desmontar componente
+  useEffect(() => {
+    return () => {
+      isAnimatingRef.current = false;
+      controls.current.forEach((control) => {
+        control.stop();
+      });
+    };
+  }, []);
+
+  // Observer para detectar mudanças de visibilidade (opcional - para pausar quando fora da tela)
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            isAnimatingRef.current = true;
+            updateAnimations(1, 0, true);
+          } else {
+            isAnimatingRef.current = false;
+            controls.current.forEach((control) => control.stop());
+          }
         });
-      });
-    };
+      },
+      { threshold: 0.1 }
+    );
 
-    setupAnimations();
+    observer.observe(sectionRef.current);
 
     return () => {
-      isActive = false;
+      observer.disconnect();
     };
-  }, [directions, speeds]);
+  }, [updateAnimations]);
 
-  // Adjust animation on scroll
+  const cleanupAnimations = useCallback(() => {
+    isAnimatingRef.current = false;
+    controls.current.forEach((control) => {
+      control.stop();
+    });
+  }, []);
+
+  // Cleanup ao desmontar componente
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-
-      window.requestAnimationFrame(() => {
-        adjustSpeed(0.5, -3);
-        ticking = false;
-
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          adjustSpeed(1.0, 0);
-        }, 200);
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, [adjustSpeed]);
+    return cleanupAnimations;
+  }, [cleanupAnimations]);
 
   return (
     <div
@@ -144,10 +222,10 @@ const MainFeaturesList = ({ features }: { features: any }) => {
           Principais funcionalidades
         </Heading>
       </Container>
-      {[0, 1, 2].map((stripIndex) => (
+
+      {config.directions.map((_, stripIndex) => (
         <div key={stripIndex} className="overflow-hidden py-1">
           <motion.div
-            // ref={(el) => (containerRefs.current[stripIndex] = el)}
             ref={(el) => {
               containerRefs.current[stripIndex] = el;
             }}
@@ -159,6 +237,7 @@ const MainFeaturesList = ({ features }: { features: any }) => {
             }}
             className="flex items-center"
           >
+            {/* Duplicar conteúdo para loop infinito seamless */}
             {[0, 1].map((setIndex) => (
               <div key={setIndex} className="flex">
                 {features.map((feature: any, featureIndex: number) => (

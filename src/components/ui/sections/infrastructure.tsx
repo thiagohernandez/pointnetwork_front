@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { motion } from "motion/react";
 import Container from "@/components/ui/container";
 import Heading from "@/components/ui/heading";
@@ -10,16 +10,124 @@ import {
 } from "@/components/ui/icons";
 
 const Infrastructure = () => {
-  const [rotation, setRotation] = useState(0);
+  // Memoized animation variants to prevent recreation on every render
+  const pulseVariants = useMemo(
+    () => ({
+      animate: {
+        scale: [1, 1.05, 1],
+        transition: {
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        },
+      },
+    }),
+    []
+  );
 
-  // Animação de rotação contínua
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRotation((prev) => (prev + 1) % 360);
-    }, 100);
+  const pulseVariants2 = useMemo(
+    () => ({
+      animate: {
+        scale: [1, 1.1, 1],
+        transition: {
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5,
+        },
+      },
+    }),
+    []
+  );
 
-    return () => clearInterval(interval);
-  }, []);
+  const pulseVariants3 = useMemo(
+    () => ({
+      animate: {
+        scale: [1, 1.15, 1],
+        transition: {
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        },
+      },
+    }),
+    []
+  );
+
+  const pulseVariants4 = useMemo(
+    () => ({
+      animate: {
+        scale: [1, 1.2, 1],
+        transition: {
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5,
+        },
+      },
+    }),
+    []
+  );
+
+  const glowVariants = useMemo(
+    () => ({
+      animate: {
+        scale: [1, 4, 1],
+        opacity: [0.25, 1, 0.25],
+        transition: {
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5,
+        },
+      },
+    }),
+    []
+  );
+
+  const rotateVariants = useMemo(
+    () => ({
+      animate: {
+        rotate: 360,
+        transition: {
+          duration: 36, // 36 seconds for full rotation (much smoother)
+          repeat: Infinity,
+          ease: "linear",
+        },
+      },
+    }),
+    []
+  );
+
+  const counterRotateVariants = useMemo(
+    () => ({
+      animate: {
+        rotate: -360,
+        transition: {
+          duration: 36, // Same duration but opposite direction
+          repeat: Infinity,
+          ease: "linear",
+        },
+      },
+    }),
+    []
+  );
+
+  const centerLogoVariants = useMemo(
+    () => ({
+      animate: {
+        scale: [1, 1.1, 1],
+        transition: {
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        },
+      },
+    }),
+    []
+  );
+
   return (
     <section className="py-16 lg:py-32 bg-porcelain">
       <Container className="justify-between">
@@ -51,62 +159,46 @@ const Infrastructure = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
                 className="absolute inset-0"
+                style={{ willChange: "transform" }}
               >
                 <motion.div
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
+                  variants={pulseVariants}
+                  animate="animate"
                   className="absolute inset-0 rounded-full border border-gray-200"
-                ></motion.div>
+                  style={{ willChange: "transform" }}
+                />
                 <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                    delay: 0.5,
-                  }}
+                  variants={pulseVariants2}
+                  animate="animate"
                   className="absolute inset-[30px] rounded-full border border-gray-200"
-                ></motion.div>
+                  style={{ willChange: "transform" }}
+                />
                 <motion.div
-                  animate={{ scale: [1, 1.15, 1] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
+                  variants={pulseVariants3}
+                  animate="animate"
                   className="absolute inset-[60px] rounded-full border border-gray-200"
-                ></motion.div>
+                  style={{ willChange: "transform" }}
+                />
                 <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                    delay: 1.5,
-                  }}
+                  variants={pulseVariants4}
+                  animate="animate"
                   className="absolute inset-[90px] rounded-full border border-gray-200"
-                ></motion.div>
+                  style={{ willChange: "transform" }}
+                />
                 <motion.div
-                  animate={{ scale: [1, 4, 1], opacity: [0.25, 1, 0.25] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                    delay: 1.5,
-                  }}
+                  variants={glowVariants}
+                  animate="animate"
                   className="absolute inset-[90px] rounded-full border border-gray-200 bg-white z-[-1] blur-sm"
-                ></motion.div>
+                  style={{ willChange: "transform, opacity" }}
+                />
               </motion.div>
 
               {/* Container para rotação dos logos */}
-              <div
+              <motion.div
+                variants={rotateVariants}
+                animate="animate"
                 className="absolute inset-0"
-                style={{ transform: `rotate(${rotation}deg)` }}
+                style={{ willChange: "transform" }}
               >
                 {/* Logo Google Cloud */}
                 <div
@@ -123,8 +215,10 @@ const Infrastructure = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
+                    variants={counterRotateVariants}
+                    animate="animate"
                     className="p-2 w-auto h-6 [&_svg]:w-auto [&_svg]:h-6"
-                    style={{ transform: `rotate(-${rotation}deg)` }} // Contra-rotação para manter o logo na orientação correta
+                    style={{ willChange: "transform" }}
                   >
                     <IconLogoGoogleCloud />
                   </motion.div>
@@ -145,13 +239,15 @@ const Infrastructure = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                     viewport={{ once: true }}
+                    variants={counterRotateVariants}
+                    animate="animate"
                     className="p-2 w-auto h-8 [&_svg]:w-auto [&_svg]:h-8"
-                    style={{ transform: `rotate(-${rotation}deg)` }} // Contra-rotação para manter o logo na orientação correta
+                    style={{ willChange: "transform" }}
                   >
                     <IconLogoAws />
                   </motion.div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Logo Point (P) centralizado */}
               <motion.div
@@ -162,12 +258,9 @@ const Infrastructure = () => {
                 className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-network-primary"
               >
                 <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
+                  variants={centerLogoVariants}
+                  animate="animate"
+                  style={{ willChange: "transform" }}
                 >
                   <IconLogoP />
                 </motion.div>

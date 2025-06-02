@@ -85,6 +85,7 @@ export default function ContactForm({
       } else {
       }
     } catch (error) {
+      console.error("Erro ao enviar o formulário:", error);
     } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);

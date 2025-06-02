@@ -36,9 +36,8 @@ export const solutionsAdministradorasPage = {
               className="![&_card-content]:text-[#36583F]"
             >
               <p>
-                Oferecemos uma ampla solução para automatizar 100% do seu
-                financeiro, integrando sua conta bancária com nossos módulos
-                financeiros, otimizando o tempo e garantindo dados confiáveis.
+                Automatize 100% do seu financeiro com integração bancária,
+                ganhando tempo e confiabilidade nos dados.
               </p>
             </CardFeature>
           ),
@@ -51,9 +50,8 @@ export const solutionsAdministradorasPage = {
               icon={<HandCoinsIcon />}
             >
               <p>
-                Com PointCondominio, além de economizar tempo na gestão dos
-                condomínios, temos um leque de soluções para gerar receita e
-                todas as ferramentas necessárias para reduzir e combater a
+                Com o PointCondominio, você economiza tempo na gestão, conta com
+                soluções para gerar receita e ferramentas para reduzir a
                 inadimplência.
               </p>
             </CardFeature>
@@ -67,10 +65,9 @@ export const solutionsAdministradorasPage = {
               icon={<TimerResetIcon />}
             >
               <p>
-                Acesso a plataforma de qualquer dispositivo em qualquer lugar
-                sem se preocupar com gastos de infraestrutura e segurança.
-                Investimos grande parte de nossos esforços para oferecer
-                servidores estáveis e altamente seguros.
+                A plataforma pode ser acessada de qualquer dispositivo, com
+                infraestrutura estável e segurança garantida, sem custos
+                adicionais.
               </p>
             </CardFeature>
           ),
@@ -86,11 +83,9 @@ export const solutionsAdministradorasPage = {
               className="![&_card-content]:text-[#36583F]"
             >
               <p>
-                Nosso módulo de convivência irá oferecer diversos serviços para
-                os moradores, melhorando a experiência e a satisfação com os
-                seus serviços prestados. Além de proporcionar diversas
-                ferramentas de autosserviço aos moradores reduzindo uma
-                importante carga de trabalho das administradoras.
+                Nosso módulo de convivência melhora a experiência dos moradores
+                com serviços e ferramentas de autosserviço, reduzindo a carga de
+                trabalho das administradoras.
               </p>
             </CardFeature>
           ),
@@ -103,10 +98,8 @@ export const solutionsAdministradorasPage = {
               icon={<MessagesSquareIcon />}
             >
               <p>
-                Os moradores terão fácil acesso a solicitar segunda via de
-                boleto, canais de comunicação com o síndico e administradora,
-                reserva de áreas comuns, prestação de contas e o mais
-                importante, acesso à informação de qualquer lugar.
+                Moradores terão acesso fácil a boletos, comunicação, reservas,
+                prestação de contas e informações de qualquer lugar.
               </p>
             </CardFeature>
           ),
@@ -116,11 +109,9 @@ export const solutionsAdministradorasPage = {
           content: (
             <CardFeature title="Reduzir conflitos" icon={<SmilePlusIcon />}>
               <p>
-                Com nossa plataforma os moradores terão em um único lugar um
-                espaço para ter voz, poder se comunicar com outros moradores e
-                encontrar facilmente diversas informações do condomínio,
-                evitando problemas de comunicação e reduzindo os conflitos entre
-                síndico e moradores.
+                Nossa plataforma centraliza a comunicação entre moradores e
+                facilita o acesso às informações do condomínio, reduzindo
+                conflitos e falhas de comunicação.
               </p>
             </CardFeature>
           ),
@@ -230,7 +221,7 @@ export const solutionsMoradoresPage = {
       icon: <QrCode />,
       title: "Autosserviço e digitalização de processos",
       description:
-        "Os moradores poderão em um só lugar reservar áreas comuns, solicitar segunda via de boleto, acessar a assembléia digital, votar em enquetes, e muitas outras funcionalidades em um sistema 100% online e seguro.",
+        "Os moradores poderão em um só lugar reservar áreas comuns, solicitar segunda via de boleto, acessar a assembleia digital, votar em enquetes, e muitas outras funcionalidades em um sistema 100% online e seguro.",
       img: {
         src: "/bg-pointcondominio-box-solution-002.png",
         width: 358,
@@ -271,7 +262,7 @@ export const solutionsMoradoresPage = {
       content: "Livro de ocorrências",
     },
     {
-      content: "Telefones uteís",
+      content: "Telefones úteis",
     },
     {
       content: "Controle de contratos",
@@ -313,7 +304,7 @@ export const solutionsMoradoresPage = {
       content: "Guia do comércio",
     },
     {
-      content: "Assembléia online",
+      content: "Assembleia online",
     },
   ],
   slug: "moradores-de-condominio",
@@ -378,7 +369,7 @@ export const solutionsControleAcessoPage = {
       icon: <QrCode />,
       title: "Autosserviço e digitalização de processos",
       description:
-        "Os moradores poderão em um só lugar reservar áreas comuns, solicitar segunda via de boleto, acessar a assembléia digital, votar em enquetes, e muitas outras funcionalidades em um sistema 100% online e seguro.",
+        "Os moradores poderão em um só lugar reservar áreas comuns, solicitar segunda via de boleto, acessar a assembleia digital, votar em enquetes, e muitas outras funcionalidades em um sistema 100% online e seguro.",
       img: {
         src: "/bg-pointcondominio-box-solution-002.png",
         width: 358,
