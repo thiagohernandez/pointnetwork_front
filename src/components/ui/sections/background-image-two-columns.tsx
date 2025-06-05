@@ -6,7 +6,10 @@ import Heading from "@/components/ui/heading";
 
 export function BackgroundImageTwoColumns() {
   return (
-    <section className="relative py:32 lg:py-52 overflow-hidden">
+    <section
+      className="relative py:32 lg:py-52 overflow-hidden"
+      id="transparencia"
+    >
       {/* Imagem de fundo em escala de cinza */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image

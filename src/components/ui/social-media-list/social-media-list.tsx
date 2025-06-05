@@ -20,7 +20,7 @@ const SociallMediaList = () => {
         <IconX />
       </a>
       <a
-        href="https://www.linkedin.com/company/pointcondominio"
+        href="https://www.linkedin.com/company/pointnetwork/"
         className={buttonVariants({ variant: "square", size: "icon" })}
         target="_blank"
       >

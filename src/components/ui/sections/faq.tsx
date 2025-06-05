@@ -30,7 +30,7 @@ const FAQ = () => {
             <h3 className="tracking-tight font-semibold text-xl md:text-2xl text-id-gray-light leading-tight my-3">
               Não encontrou aqui sua resposta?{" "}
               <Link
-                href="#contact"
+                href="/contato"
                 className="text-network-primary transition-colors underline hover:text-primary"
               >
                 Envie-nos uma mensagem

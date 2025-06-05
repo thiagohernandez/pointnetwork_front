@@ -73,36 +73,37 @@ const Footer = () => {
                   </h4>
                   <ul className="flex flex-col flex-wrap gap-1">
                     <li>
-                      <a
-                        href="#innovation"
+                      <Link
+                        href="/quem-somos"
                         className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
                       >
                         Sobre nós
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="https://www.pointcondominio.com.br/noticias"
+                      <Link
+                        href="/quem-somos#transparencia"
                         className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
                       >
                         Transparência
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/blog"
                         className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
                       >
                         Blog
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#contact"
+                      <Link
+                        href="/contato"
                         className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
+                        target="_blank"
                       >
                         Contato
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -112,28 +113,31 @@ const Footer = () => {
                   </h4>
                   <ul className="flex flex-col flex-wrap gap-1">
                     <li>
-                      <a
+                      <Link
                         href="https://www.pointcondominio.com.br/"
                         className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
+                        target="_blank"
                       >
                         Point Condomínio
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="https://www.pointcondominio.com.br/point-saas"
                         className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
+                        target="_blank"
                       >
                         Point SaaS
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
-                        className="inline-flex font-semibold tracking-tight text-id-green no-underline text-sm hover:text-white py-1"
+                      <Link
+                        href="https://www.pointid.com.br"
+                        className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
+                        target="_blank"
                       >
                         Point ID
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
