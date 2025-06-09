@@ -127,7 +127,7 @@ const DesktopMainNav = () => {
               target="_blank"
               className="w-full flex items-center gap-4 justify-between"
             >
-              <div className="flex flex-col items-start gap-2 text-primary w-auto [&_svg]:!w-auto [&_svg]:!h-[32px] [&_svg]:!text-slate-900 justify-start text-left">
+              <div className="flex flex-col items-start gap-2 text-primary w-auto [&_svg]:!w-auto [&_svg]:!h-[32px] [&_svg]:!text-id-green justify-start text-left">
                 <LogoPointID />
                 <p className="text-xs font-semibold text-slate-600">
                   Controle de acesso para portarias

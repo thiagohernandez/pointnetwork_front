@@ -102,7 +102,7 @@ export default function Home() {
           <div className="lg:w-2/3 lg:justify-end">
             <div className="lg:max-w-4xl grid grid-cols-1 lg:grid-cols-3 gap-4 ml-auto">
               <div className="col-001 grid grid-rows-2 justify-between gap-4 h-full">
-                <div className="w-full bg-secondary px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-[#D1CDF6] transition-colors hover:bg-network-primary hover:text-white">
+                <div className="w-full bg-secondary px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-[#D1CDF6] transition-colors hover:bg-network-primary/20 hover:text-network-primary">
                   <div className="leading-snug">
                     <p className="text-sm">Mais de</p>
                     <p className="text-6xl font-semibold tracking-tighter">
@@ -111,7 +111,7 @@ export default function Home() {
                     <p className="text-sm">de experiência</p>
                   </div>
                 </div>
-                <div className="w-full bg-id-green px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-id-gray-dark transition-colors hover:bg-network-primary hover:text-white">
+                <div className="w-full bg-network-primary px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-slate-100 transition-colors hover:bg-network-primary/20 hover:text-network-primary">
                   <div className="leading-snug">
                     <p className="text-sm">Mais de</p>
                     <p className="text-6xl font-semibold tracking-tighter">
