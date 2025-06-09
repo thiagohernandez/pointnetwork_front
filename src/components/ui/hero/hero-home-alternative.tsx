@@ -41,7 +41,10 @@ const HeroHomeAlternative = () => {
                 poster="/images/pointid-intro-poster.jpg"
                 className="masking-intro max-w-full h-[auto] ml-auto mr-auto flex -mb-52"
               >
-                <source src="/videos/point-intro-city.mp4" type="video/mp4" />
+                <source
+                  src="/videos/point-intro-city-02.mp4"
+                  type="video/mp4"
+                />
                 Your browser does not support the video tag.
               </video>
             </div>
