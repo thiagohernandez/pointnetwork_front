@@ -78,7 +78,7 @@ export default function Home() {
         </div>
       </Container>
       <Container>
-        <div className="flex flex-col lg:flex-row justify-between gap-4 py-16 lg:py-32">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4 py-16 lg:py-32">
           <div className="lg:w-1/3">
             <div className="max-w-lg flex flex-col gap-2">
               <Heading
@@ -100,9 +100,9 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:w-2/3 lg:justify-end">
-            <div className="lg:max-w-4xl grid grid-cols-1 lg:grid-cols-3 gap-4 ml-auto">
-              <div className="col-001 grid grid-rows-2 justify-between gap-4 h-full">
-                <div className="w-full bg-secondary px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-[#D1CDF6] transition-colors hover:bg-network-primary/20 hover:text-network-primary">
+            <div className="lg:max-w-4xl grid grid-cols-1 lg:grid-cols-3 gap-4 ml-auto auto-rows-min items-start">
+              <div className="col-001 grid grid-cols-1 sm:grid-cols-2 sm:grid-row-1 md:grid-cols-1 md:grid-rows-2 justify-between gap-4 h:auto lg:h-full">
+                <div className="w-full bg-secondary px-6 py-8 rounded-2xl flex justify-start items-center gap-0 font-semibold tracking-tight text-[#D1CDF6] transition-colors hover:bg-network-primary/20 hover:text-network-primary">
                   <div className="leading-snug">
                     <p className="text-sm">Mais de</p>
                     <p className="text-6xl font-semibold tracking-tighter">
@@ -111,7 +111,7 @@ export default function Home() {
                     <p className="text-sm">de experiência</p>
                   </div>
                 </div>
-                <div className="w-full bg-network-primary px-6 py-8 rounded-2xl flex flex-col justify-center items-center gap-0 font-semibold tracking-tight text-slate-100 transition-colors hover:bg-network-primary/20 hover:text-network-primary">
+                <div className="w-full bg-network-primary px-6 py-8 rounded-2xl flex justify-start items-center gap-0 font-semibold tracking-tight text-slate-100 transition-colors hover:bg-network-primary/20 hover:text-network-primary">
                   <div className="leading-snug">
                     <p className="text-sm">Mais de</p>
                     <p className="text-6xl font-semibold tracking-tighter">
@@ -123,7 +123,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="col-002 grid justify-between gap-4 h-full rounded-2xl overflow-hidden">
+              <div className="col-002 grid sm:hidden md:grid justify-between gap-4 h-full rounded-2xl overflow-hidden">
                 <Image
                   src="/gestao-de-condominio-point-network.jpg"
                   alt="Point Network"
@@ -132,8 +132,33 @@ export default function Home() {
                   className="w-auto h-full object-cover"
                 />
               </div>
-              <div className="col-003 grid justify-between gap-4 h-full">
+              <div className="col-003 grid sm:hidden md:grid justify-between gap-4 h-full">
                 <div className="bg-id-gray-light/15 text-slate-700 overflow-hidden py-6 rounded-2xl flex flex-col justify-between gap-3 h-auto shrink-0 transition-all hover:bg-id-gray-dark hover:text-white group">
+                  <div className="relative">
+                    <div className="absolute ml-6 translate-x-12 group-hover:translate-x-0 transition-transform duration-300 ease-in-out">
+                      <IconBrasilMap />
+                    </div>
+                    <canvas
+                      width={295}
+                      height={280}
+                      className="w-full h-auto"
+                    ></canvas>
+                  </div>
+
+                  <p className="font-semibold tracking-tighttext-lg mt-6 px-6">
+                    Atuamos em todo o território nacional
+                  </p>
+                </div>
+              </div>
+              <div className="col-004 hidden sm:flex md:hidden justify-between gap-4 h-auto">
+                <Image
+                  src="/gestao-de-condominio-point-network.jpg"
+                  alt="Point Network"
+                  width={544}
+                  height={746}
+                  className="w-1/2 h-full object-cover shrink-0"
+                />
+                <div className="bg-id-gray-light/15 text-slate-700 overflow-hidden py-6 rounded-2xl w-1/2 flex flex-col justify-between gap-3 h-auto shrink-0 transition-all hover:bg-id-gray-dark hover:text-white group">
                   <div className="relative">
                     <div className="absolute ml-6 translate-x-12 group-hover:translate-x-0 transition-transform duration-300 ease-in-out">
                       <IconBrasilMap />

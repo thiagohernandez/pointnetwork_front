@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <Header />
       <HeroContact />
-      <BlogLastsPosts />
+      {/* <BlogLastsPosts /> */}
       <Footer />
     </>
   );

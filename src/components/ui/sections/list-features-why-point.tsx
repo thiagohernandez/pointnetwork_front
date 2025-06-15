@@ -4,7 +4,7 @@ const ListFeaturesWhyPoint = () => {
   return (
     <div className="py-16 lg:py-32 bg-slate-300">
       <Container>
-        <div className="grid grid-cols-4 gap-16 justify-between">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 justify-between">
           <div className="flex flex-col gap-2 font-semibold tracking-tight">
             <h3 className="text-lg font-semibold tracking-tight text-network-primary">
               01

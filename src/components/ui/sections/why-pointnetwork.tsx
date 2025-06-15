@@ -71,7 +71,7 @@ export function WhyPointNetwork() {
 
           {/* Right Content - Grid Layout */}
           <div className="lg:w-2/3">
-            <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pl-0 lg:pl-16 py-6">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pl-0 xl:pl-16 py-6">
               {/* Card 1 */}
               <div className="col-001 flex flex-col justify-between gap-4 h-full">
                 <div className="bg-id-green px-6 py-8 rounded-2xl flex flex-col justify-between gap-0 font-semibold tracking-tight text-id-gray-dark transition-colors hover:bg-network-primary hover:text-white">

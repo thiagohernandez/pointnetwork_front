@@ -7,7 +7,7 @@ const HeroFullWidth = () => {
       <Container>
         <div className="pb-52 pt-12">
           <div className="max-w-6xl pt-32 flex flex-col text-white tracking-tighter">
-            <h1 className="text-6xl order-2 mb-4 font-medium">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl order-2 mb-4 font-medium">
               Na Point,{" "}
               <strong className="font-bold text-primary">
                 nosso grande sonho é simplificar a vida
