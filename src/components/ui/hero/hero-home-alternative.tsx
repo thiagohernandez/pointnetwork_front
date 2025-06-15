@@ -7,10 +7,10 @@ import { IconFiveStars } from "@/components/ui/icons";
 const HeroHomeAlternative = () => {
   return (
     <div className="w-full bg-[#170E33] relative isolate">
-      <div className=" pt-12 pb-32">
+      <div className=" pt-12 pb-62 lg:pb-32">
         <Containter>
-          <div className="flex gap-8 justify-between">
-            <div className="w-1/2 text-left text-white pt-38 justify-start flex flex-col">
+          <div className="flex flex-col md:flex-row gap-8 justify-between">
+            <div className="w-full md:w-1/2 text-left text-white pt-38 justify-start flex flex-col">
               <div className="flex flex-col gap-2 max-2xl">
                 <h1 className="order-2 text-7xl md:text-5xl font-semibold tracking-tight">
                   Simplifique a Gestão, <br />
@@ -30,7 +30,7 @@ const HeroHomeAlternative = () => {
                 </div>
               </div>
             </div>
-            <div className="w-1/2 flex justify-center items-center pt-24">
+            <div className="w-full md:w-1/2 flex justify-center items-center pt-24">
               <video
                 loop
                 autoPlay
@@ -39,7 +39,7 @@ const HeroHomeAlternative = () => {
                 width="486"
                 height="752"
                 poster="/images/pointid-intro-poster.jpg"
-                className="masking-intro max-w-full h-[auto] ml-auto mr-auto flex -mb-52"
+                className="masking-intro max-w-full h-[auto] ml-auto mr-auto flex -mb-42"
               >
                 <source
                   src="/videos/point-intro-city-02.mp4"
@@ -50,7 +50,7 @@ const HeroHomeAlternative = () => {
             </div>
           </div>
         </Containter>
-        <StripeHeroItems className=" absolute bottom-24" />
+        <StripeHeroItems className=" absolute bottom-12 xl:bottom-24" />
       </div>
     </div>
   );

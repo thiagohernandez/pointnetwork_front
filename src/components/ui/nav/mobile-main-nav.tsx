@@ -25,7 +25,7 @@ const MobileMainNav = () => {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="w-[300px] bg-[#170E33] text-white p-0 border-0"
+        className="w-[300px] bg-[#170E33] text-white p-0 border-0 [&>button]:hidden"
       >
         <div className="flex flex-col h-full">
           <div className="p-4 border-b border-gray-800">
@@ -43,6 +43,12 @@ const MobileMainNav = () => {
           </div>
           <nav className="flex-1 overflow-auto py-4">
             <div className="flex flex-col space-y-1 px-2">
+              <Link
+                href="/"
+                className="py-3 px-4 text-sm font-medium hover:bg-purple-500/10 rounded-md"
+              >
+                Home
+              </Link>
               <Link
                 href="/quem-somos"
                 className="py-3 px-4 text-sm font-medium hover:bg-purple-500/10 rounded-md"
@@ -106,7 +112,7 @@ const MobileMainNav = () => {
                     target="_blank"
                     className="w-full flex items-center gap-4 justify-between py-2 px-4 hover:bg-purple-500/10 rounded-md"
                   >
-                    <div className="flex flex-col items-start gap-2 text-primary w-auto [&_svg]:!w-auto [&_svg]:!h-[24px] [&_svg]:!text-slate-900 justify-start text-left">
+                    <div className="flex flex-col items-start gap-2 text-primary w-auto [&_svg]:!w-auto [&_svg]:!h-[24px] [&_svg]:!text-id-green justify-start text-left">
                       <LogoPointID />
                       <p className="text-xs font-semibold text-slate-100">
                         Controle de acesso para portarias
@@ -129,18 +135,18 @@ const MobileMainNav = () => {
                   </Link>
                 </div>
               </div>
-              <Link
+              {/* <Link
                 href="/blog"
                 className="py-3 px-4 text-sm font-medium hover:bg-purple-500/10 rounded-md"
               >
                 Blog
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 href="/recursos"
                 className="py-3 px-4 text-sm font-medium hover:bg-purple-500/10 rounded-md"
               >
                 Recursos
-              </Link>
+              </Link> */}
               <Link
                 href="/contato"
                 className="py-3 px-4 text-sm font-medium hover:bg-purple-500/10 rounded-md"

@@ -14,6 +14,7 @@ export const metadata: Metadata = generateMetadata({
     "recursos para administradoras",
     "recursos gratuitos",
   ],
+  noIndex: true,
 });
 
 const Recursos = () => {

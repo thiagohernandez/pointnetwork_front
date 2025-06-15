@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import FAQ from "@/components/ui/sections/faq";
-import { HeroHome } from "@/components/ui/hero";
+import { HeroHomeAlternative } from "@/components/ui/hero";
 import { OurSolutionsCards } from "@/components/ui/sections/our-solutions-cards";
 import { SolucoesTabs } from "@/components/ui/sections/our-solutions-tabs";
 import { WhyPointNetwork } from "@/components/ui/sections/why-pointnetwork";
@@ -19,11 +19,11 @@ export default function Home() {
   return (
     <>
       <Header />
-      <HeroHome />
+      <HeroHomeAlternative />
       <OurSolutionsCards />
       <SolucoesTabs />
       <WhyPointNetwork />
-      <BlogLastsPosts />
+      {/* <BlogLastsPosts /> */}
       <FAQ />
       <Footer />
     </>

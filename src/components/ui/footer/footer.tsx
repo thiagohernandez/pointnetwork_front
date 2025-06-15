@@ -88,14 +88,14 @@ const Footer = () => {
                         Transparência
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <a
                         href="/blog"
                         className="inline-flex font-semibold tracking-tight text-primary no-underline text-sm hover:text-white py-1"
                       >
                         Blog
                       </a>
-                    </li>
+                    </li> */}
                     <li>
                       <Link
                         href="/contato"
@@ -141,7 +141,7 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="flex flex-col">
+                {/* <div className="flex flex-col">
                   <h4 className="uppercase font-semibold text-[13px] text-id-gray mb-4">
                     Serviços
                   </h4>
@@ -203,7 +203,7 @@ const Footer = () => {
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </div>
               <div className="flex w-full gap-6 items-center py-16">
                 <Image

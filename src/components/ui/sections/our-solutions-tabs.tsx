@@ -113,9 +113,9 @@ export function SolucoesTabs() {
 
           {/* Content */}
           <div className="lg:w-2/3">
-            <div className="bg-white rounded-xl shadow-sm pl-12 pr-6 pb-12 pt-6 flex flex-col lg:flex-row gap-8 overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm pl-6 lg:pl-12 pr-6 pb-12 pt-6 flex flex-col lg:flex-row gap-8 overflow-hidden">
               {/* Tab Content */}
-              <div className="relative flex gap-8 before:content-[' '] before:absolute before:-left-12 before:w-[8px] before:h-full before:bg-network-primary/20">
+              <div className="relative flex flex-col lg:flex-row gap-8 before:content-[' '] before:absolute before:-left-12 before:w-[8px] before:h-full lg:before:bg-network-primary/20">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeTab}
@@ -239,7 +239,7 @@ export function SolucoesTabs() {
 
                     {/* Overlay card */}
                     <motion.div
-                      className="absolute top-32 -left-8 bg-white rounded-lg p-3 shadow-md"
+                      className="absolute top-32 -left-8 bg-white rounded-lg p-3 shadow-md hidden lg:block"
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.6 }}

@@ -27,39 +27,18 @@ interface ResourcePageProps {
   }>;
 }
 
-// Geração dinâmica de metadata para SEO
-export async function generateMetadata({
-  params,
-}: ResourcePageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+import { generateMetadata } from "@/components/seo/metadata";
 
-  const resource = await getResourceBySlug(slug);
-
-  if (!resource) {
-    return {
-      title: "Recurso não encontrado | Point Network",
-      description: "O recurso solicitado não foi encontrado.",
-    };
-  }
-
-  return {
-    title: `${resource.title} | Point Network`,
-    description: resource.description,
-    openGraph: {
-      title: resource.title,
-      description: resource.description,
-      //   images: [
-      //     {
-      //       url: resource.img || "/default-resource-image.jpg",
-      //       width: 1200,
-      //       height: 630,
-      //       alt: resource.title,
-      //     },
-      //   ],
-    },
-  };
-}
+export const metadata: Metadata = generateMetadata({
+  title:
+    "Soluções para administradoras e síndicos profissionais | PointNetwork",
+  keywords: [
+    "Gestão condominial",
+    "Gestão de condomínios",
+    "Sistema para condomínios",
+  ],
+  noIndex: true,
+});
 
 // Componente principal da página
 export default async function ResourcePage({ params }: ResourcePageProps) {

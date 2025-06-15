@@ -71,7 +71,7 @@ export function WhyPointNetwork() {
 
           {/* Right Content - Grid Layout */}
           <div className="lg:w-2/3">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pl-16 lg:pl-16 py-6">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pl-0 lg:pl-16 py-6">
               {/* Card 1 */}
               <div className="col-001 flex flex-col justify-between gap-4 h-full">
                 <div className="bg-id-green px-6 py-8 rounded-2xl flex flex-col justify-between gap-0 font-semibold tracking-tight text-id-gray-dark transition-colors hover:bg-network-primary hover:text-white">
@@ -126,7 +126,7 @@ export function WhyPointNetwork() {
                   <p className="text-sm">de experiência</p>
                 </div>
               </div>
-              <div className="col-003 flex flex-col gap-4 h-full">
+              <div className="col-003 flex flex-col gap-4 h-auto sm:h-full">
                 <div className="bg-id-gray-light/15 text-slate-700 overflow-hidden py-6 rounded-2xl flex flex-col justify-between gap-3 h-auto shrink-0 transition-all hover:bg-id-gray-dark hover:text-white group">
                   <div className="relative">
                     <div className="absolute ml-6 translate-x-12 group-hover:translate-x-0 transition-transform duration-300 ease-in-out">
@@ -135,7 +135,7 @@ export function WhyPointNetwork() {
                     <canvas
                       width={295}
                       height={280}
-                      className="w-full h-auto"
+                      className="max-w-full h-auto block"
                     ></canvas>
                   </div>
 
@@ -143,6 +143,16 @@ export function WhyPointNetwork() {
                     Atuamos em todo o território nacional
                   </p>
                 </div>
+                <div className="bg-id-gray-light/15 text-slate-700 p-6 rounded-2xl flex sm:hidden md:hidden lg:flex flex-col justify-between gap-3 h-full transition-all hover:bg-id-gray-dark hover:text-white">
+                  <div className="mb-14">
+                    <BanknoteArrowUp strokeWidth={1.5} />
+                  </div>
+                  <p className="font-semibold tracking-tight text-lg">
+                    Redução de custos operacionais e aumento da produtividade.
+                  </p>
+                </div>
+              </div>
+              <div className="col-004 flex-col hidden sm:flex md:flex lg:hidden gap-4 h-full">
                 <div className="bg-id-gray-light/15 text-slate-700 p-6 rounded-2xl flex flex-col justify-between gap-3 h-full transition-all hover:bg-id-gray-dark hover:text-white">
                   <div className="mb-14">
                     <BanknoteArrowUp strokeWidth={1.5} />
