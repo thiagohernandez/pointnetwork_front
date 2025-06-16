@@ -34,7 +34,7 @@ export default function Home() {
       <Header />
       <HeroFullWidth />
       <FullImage />
-      <Container className="-mt-32 lg:-mt-52 pb-16 lg:pb-32">
+      <Container className="-mt-2 md:-mt-32 lg:-mt-52 pb-16 lg:pb-32">
         <div className="flex flex-col lg:flex-row justify-between gap-4">
           <div className="max-w-lg flex flex-col gap-2">
             <Heading

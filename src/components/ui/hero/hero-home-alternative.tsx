@@ -7,16 +7,16 @@ import { IconFiveStars } from "@/components/ui/icons";
 const HeroHomeAlternative = () => {
   return (
     <div className="w-full bg-[#170E33] relative isolate">
-      <div className=" pt-12 pb-62 lg:pb-32">
+      <div className="pt-0 md:pt-12 pb-62 lg:pb-32">
         <Containter>
           <div className="flex flex-col md:flex-row gap-8 justify-between">
             <div className="w-full md:w-1/2 text-left text-white pt-38 justify-start flex flex-col">
               <div className="flex flex-col gap-2 max-2xl">
-                <h1 className="order-2 text-7xl md:text-5xl font-semibold tracking-tight">
+                <h1 className="order-2 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight">
                   Simplifique a Gestão, <br />
                   Maximize Resultados!
                 </h1>
-                <h2 className=" text-2xl font-semibold tracking-tight">
+                <h2 className="text-lg md:text-xl lg:text-2xl font-semibold tracking-tight">
                   Vá direto ao Point!
                 </h2>
               </div>
@@ -26,7 +26,8 @@ const HeroHomeAlternative = () => {
               </p>
               <div className="w-full flex justify-start text-center">
                 <div className="flex gap-2 items-center tracking-tight px-4 py-0.5 bg-id-green text-id-gray-dark font-semibold rounded-md">
-                  Excelente <IconFiveStars /> +2mil clientes satisfeitos
+                  Excelente <IconFiveStars />{" "}
+                  <span>+2mil clientes satisfeitos</span>
                 </div>
               </div>
             </div>

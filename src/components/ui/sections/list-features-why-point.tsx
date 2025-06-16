@@ -4,7 +4,7 @@ const ListFeaturesWhyPoint = () => {
   return (
     <div className="py-16 lg:py-32 bg-slate-300">
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 justify-between">
           <div className="flex flex-col gap-2 font-semibold tracking-tight">
             <h3 className="text-lg font-semibold tracking-tight text-network-primary">
               01
@@ -54,14 +54,14 @@ const ListFeaturesWhyPoint = () => {
       </Container>
       <div className="py-16 lg:pt-32 lg:pb-24 bg-slate-300">
         <Container>
-          <div className="grid grid-cols-4 gap-16 justify-between">
-            <div className="flex col-span-2 font-semibold tracking-tight text-lg text-id-gray lg:pr-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 justify-between">
+            <div className="flex md:col-span-2 font-semibold tracking-tight text-lg text-id-gray lg:pr-24">
               Acreditamos que a transparência é a chave para construir
               relacionamentos duradouros e bem-sucedidos. Ao escolher a
               PointNetwork, você pode ter a certeza de que estará trabalhando
               com um parceiro confiável e comprometido com a sua satisfação.
             </div>
-            <div className="flex col-span-2 font-semibold tracking-tight text-network-primary text-3xl lg:pr-24">
+            <div className="flex md:col-span-2 font-semibold tracking-tight text-network-primary text-3xl lg:pr-24">
               Juntos, podemos construir um futuro mais transparente e eficiente
               para a gestão do seu negócio.
             </div>

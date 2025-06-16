@@ -46,12 +46,12 @@ const HeroSolutions = ({
                 </Link>
               </div>
             </div>
-            <div className="w-1/3 text-white">
+            <div className="w-full lg:w-1/3 text-white">
               <ContactForm buttonVariant="green" />
             </div>
           </div>
           <div
-            className={`absolute w-[226px] -bottom-4 translate-y-1/2 ${accentColor} [&_svg]:w-full [&_svg]:h-auto [&_svg]:${accentColor} [&_svg]:!fill-current`}
+            className={`absolute w-[132px] sm:w-[226px] -bottom-12 sm:-bottom-24 lg:-bottom-4 translate-y-1/2 ${accentColor} [&_svg]:w-full [&_svg]:h-auto [&_svg]:${accentColor} [&_svg]:!fill-current`}
           >
             <IconLogoP />
           </div>

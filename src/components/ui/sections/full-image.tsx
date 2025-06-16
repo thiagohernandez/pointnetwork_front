@@ -20,7 +20,7 @@ const FullImage = () => {
           alt="Full Image"
           width={275}
           height={426}
-          className="h-auto object-cover mx-auto block -translate-y-50"
+          className="h-auto object-cover mx-auto block -translate-y-[60px] md:-translate-y-50 max-w-[120px] md:max-w-full"
           quality={100}
         />
         <Image
@@ -28,10 +28,10 @@ const FullImage = () => {
           alt="Full Image"
           width={192}
           height={163}
-          className="h-auto block absolute -translate-y-10 translate-x-1/3 right-1/5 bottom-1/2"
+          className="h-auto hidden md:block absolute -translate-y-10 translate-x-1/3 right-1/5 bottom-1/2"
           quality={100}
         />
-        <div className="absolute top-1/3 left-1/5 -translate-y-1/2 mt-5 bg-white rounded-lg p-3 shadow-md">
+        <div className="absolute top-1/3 left-2 md:left-1/5 -translate-y-1/2 mt-5 bg-white rounded-lg p-3 shadow-md">
           <div className="text-xs text-gray-500">5 Abril, 2025</div>
           <div className="flex flex-col">
             <div className="font-medium">R$132.200,25</div>

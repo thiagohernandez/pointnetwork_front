@@ -126,7 +126,7 @@ const FeaturesVideo = ({ data }: { data: any }) => {
               </div>
               <div className="mt-auto w-full">
                 {data?.showFeatturesTitle && (
-                  <Heading className="flex gap-2 items-center text-lg text-network-primary font-semibold tracking-tight">
+                  <Heading className="hidden xl:flex gap-2 items-center text-lg text-network-primary font-semibold tracking-tight">
                     Principais vantages{" "}
                     {isYou ? (
                       <motion.div

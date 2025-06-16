@@ -13,9 +13,9 @@ const BackgroundFeatures = () => {
         className="w-full h-auto object-cover rounded-xl"
         quality={100}
       />
-      <Container className="relative">
-        <div className="flex gap-8 absolute -translate-y-2/3">
-          <div className="rounded-xl p-8 bg-[#EDEBE1] text-slate-700 [&_strong]:text-saas-orange--dark font-semibold tracking-tight max-w-[320px]">
+      <Container className="relative pt-8 md:pt-0">
+        <div className="flex flex-col md:flex-row gap-8 relative md:absolute md:-translate-y-2/3">
+          <div className="rounded-xl p-8 bg-[#EDEBE1] text-slate-700 [&_strong]:text-saas-orange--dark font-semibold tracking-tight max-w-full md:max-w-[320px]">
             <div className="text-saas-orange--light/25 text-[82px] tracking-tighter mb-8 leading-none">
               20%
             </div>
@@ -24,7 +24,7 @@ const BackgroundFeatures = () => {
               uma <strong>redução de custos operacionais de até 20%.</strong>
             </p>
           </div>
-          <div className="rounded-xl p-8 bg-[#EDEBE1] text-slate-700 [&_strong]:text-saas-orange--dark font-semibold tracking-tight max-w-[320px]">
+          <div className="rounded-xl p-8 bg-[#EDEBE1] text-slate-700 [&_strong]:text-saas-orange--dark font-semibold tracking-tight max-w-full md:max-w-[320px]">
             <div className="text-saas-orange--light/25 text-[82px] tracking-tighter mb-8 leading-none">
               7/10
             </div>
