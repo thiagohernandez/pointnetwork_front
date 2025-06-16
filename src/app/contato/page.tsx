@@ -9,7 +9,7 @@ import Footer from "@/components/ui/footer/footer";
 import { Header } from "@/components/ui/header";
 import { HeroContact } from "@/components/ui/hero";
 
-import BlogLastsPosts from "@/components/ui/sections/blog-lasts-posts";
+// import BlogLastsPosts from "@/components/ui/sections/blog-lasts-posts";
 
 export default function Home() {
   return (
