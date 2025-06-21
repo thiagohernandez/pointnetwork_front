@@ -141,7 +141,7 @@ const DesktopMainNav = () => {
             className="font-semibold p-4 text-slate-600 hover:bg-slate-200 hover-text-slate-700 transition-all"
           >
             <Link
-              href="https://pointsaas.com.br/"
+              href="/solucoes/gestao-financeira/"
               target="_blank"
               className="w-full flex items-center gap-4 justify-between"
             >

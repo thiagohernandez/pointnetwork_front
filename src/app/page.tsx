@@ -12,7 +12,7 @@ import { generateMetadata } from "@/components/seo/metadata";
 
 export const metadata: Metadata = generateMetadata({
   title: "PointNetwork | Simplifique a Gestão, Maximize Resultados!",
-  keywords: ["Gestão condominial", "Controle de acesso", "Gestão contabil"],
+  keywords: ["Gestão condominial", "Controle de acesso", "Gestão financeira"],
 });
 
 export default function Home() {
