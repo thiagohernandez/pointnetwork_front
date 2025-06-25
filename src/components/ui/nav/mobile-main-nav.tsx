@@ -121,7 +121,7 @@ const MobileMainNav = () => {
                     <SquareArrowOutUpRight className="shrink-0 w-4 h-4" />
                   </Link>
                   <Link
-                    href="https://pointsaas.com.br/"
+                    href="/solucoes/gestao-financeira"
                     target="_blank"
                     className="w-full flex items-center gap-4 justify-between py-2 px-4 hover:bg-purple-500/10 rounded-md"
                   >

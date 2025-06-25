@@ -7,7 +7,7 @@ import { IconFiveStars } from "@/components/ui/icons";
 const HeroHomeAlternative = () => {
   return (
     <div className="w-full bg-[#170E33] relative isolate">
-      <div className="pt-0 md:pt-12 pb-62 lg:pb-32">
+      <div className="pt-0 md:pt-12 pb-62 lg:pb-42 xl:pb-62">
         <Containter>
           <div className="flex flex-col md:flex-row gap-8 justify-between">
             <div className="w-full md:w-1/2 text-left text-white pt-38 justify-start flex flex-col">
