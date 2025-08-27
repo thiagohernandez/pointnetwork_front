@@ -18,7 +18,17 @@ export const metadata: Metadata = generateMetadata({
   ],
 });
 
-const Blog = () => {
+interface BlogPageProps {
+  searchParams: Promise<{
+    page?: string;
+    category?: string;
+    search?: string;
+  }>;
+}
+
+const Blog = async ({ searchParams }: BlogPageProps) => {
+  const params = await searchParams;
+  
   return (
     <>
       <Header />
@@ -27,7 +37,11 @@ const Blog = () => {
         description="Fique por dentro das últimas novidades sobre gestão de condomínios, tecnologia e inovação"
       />
       <main className="bg-slate-50 py-16 lg:py-32">
-        <BlogList />
+        <BlogList 
+          initialPage={parseInt(params.page || "1")}
+          initialCategory={params.category || ""}
+          initialSearch={params.search || ""}
+        />
       </main>
       <Footer />
     </>

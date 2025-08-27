@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Container from "@/components/ui/container";
 import { BlogCard } from "./BlogCard";
 import { BlogFilters } from "./BlogFilters";
@@ -58,22 +59,65 @@ interface Category {
   slug: string;
 }
 
-export function BlogList() {
+interface BlogListProps {
+  initialPage: number;
+  initialCategory: string;
+  initialSearch: string;
+}
+
+export function BlogList({ initialPage, initialCategory, initialSearch }: BlogListProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
   const [posts, setPosts] = useState<Post[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState({
-    page: 1,
+    page: initialPage,
     totalPages: 1,
     totalDocs: 0,
     hasNextPage: false,
     hasPrevPage: false,
   });
   
-  // Filters
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  // Get current values from URL
+  const currentPage = parseInt(searchParams.get("page") || initialPage.toString());
+  const selectedCategory = searchParams.get("category") || initialCategory;
+  const searchQuery = searchParams.get("search") || initialSearch;
+
+  // Helper function to update URL parameters
+  const updateUrlParams = (updates: { page?: number; category?: string; search?: string }) => {
+    const params = new URLSearchParams(searchParams);
+    
+    if (updates.page !== undefined) {
+      if (updates.page === 1) {
+        params.delete("page");
+      } else {
+        params.set("page", updates.page.toString());
+      }
+    }
+    
+    if (updates.category !== undefined) {
+      if (updates.category === "") {
+        params.delete("category");
+      } else {
+        params.set("category", updates.category);
+      }
+    }
+    
+    if (updates.search !== undefined) {
+      if (updates.search === "") {
+        params.delete("search");
+      } else {
+        params.set("search", updates.search);
+      }
+    }
+    
+    const queryString = params.toString();
+    const newUrl = queryString ? `/blog?${queryString}` : "/blog";
+    router.push(newUrl);
+  };
 
   const fetchPosts = async (page: number = 1, category?: string, search?: string) => {
     try {
@@ -136,20 +180,20 @@ export function BlogList() {
   }, []);
 
   useEffect(() => {
-    fetchPosts(1, selectedCategory, searchQuery);
-  }, [selectedCategory, searchQuery]);
+    fetchPosts(currentPage, selectedCategory, searchQuery);
+  }, [currentPage, selectedCategory, searchQuery]);
 
   const handlePageChange = (newPage: number) => {
-    fetchPosts(newPage, selectedCategory, searchQuery);
+    updateUrlParams({ page: newPage });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCategoryChange = (categoryId: string) => {
-    setSelectedCategory(categoryId);
+    updateUrlParams({ category: categoryId, page: 1 });
   };
 
   const handleSearchChange = (query: string) => {
-    setSearchQuery(query);
+    updateUrlParams({ search: query, page: 1 });
   };
 
   if (error) {
@@ -159,7 +203,7 @@ export function BlogList() {
           <h2 className="text-2xl font-bold text-red-600 mb-4">Erro ao carregar posts</h2>
           <p className="text-slate-600">{error}</p>
           <button
-            onClick={() => fetchPosts(1, selectedCategory, searchQuery)}
+            onClick={() => fetchPosts(currentPage, selectedCategory, searchQuery)}
             className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Tentar novamente

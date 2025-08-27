@@ -48,33 +48,40 @@ interface Post {
 
 async function getPost(slug: string): Promise<Post | null> {
   try {
+    // Use full URL for server-side requests, relative URL for client-side
+    const baseUrl =
+      process.env.NEXT_PUBLIC_PAYLOAD_URL || "http://localhost:3000";
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000'}/api/posts?where[slug][equals]=${slug}&where[status][equals]=published&populate=author,categories,featuredImage`,
+      `${baseUrl}/api/posts?where[slug][equals]=${slug}&where[status][equals]=published&populate=author,categories,featuredImage`,
       { next: { revalidate: 3600 } }
     );
-    
+
     if (!response.ok) {
       return null;
     }
-    
+
     const data = await response.json();
-    
+
     if (data.docs && data.docs.length > 0) {
       return data.docs[0];
     }
-    
+
     return null;
   } catch (error) {
-    console.error('Error fetching post:', error);
+    console.error("Error fetching post:", error);
     return null;
   }
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
-  
+
   if (!post) {
     return {
       title: "Post não encontrado | PointNetwork Blog",
@@ -84,7 +91,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const title = post.seo?.metaTitle || post.title;
   const description = post.seo?.metaDescription || post.excerpt;
-  const keywords = post.seo?.keywords?.map(k => k.keyword) || [];
+  const keywords = post.seo?.keywords?.map((k) => k.keyword) || [];
 
   return {
     title: `${title} | PointNetwork Blog`,
@@ -93,16 +100,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      type: 'article',
+      type: "article",
       publishedTime: post.publishedDate,
       authors: [post.author.name],
-      images: post.featuredImage ? [{
-        url: post.featuredImage.url,
-        alt: post.featuredImage.alt || post.title,
-      }] : undefined,
+      images: post.featuredImage
+        ? [
+            {
+              url: post.featuredImage.url,
+              alt: post.featuredImage.alt || post.title,
+            },
+          ]
+        : undefined,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: post.featuredImage ? [post.featuredImage.url] : undefined,
@@ -121,22 +132,22 @@ const formatDate = (dateString: string) => {
 
 const estimateReadingTime = (content: any): number => {
   if (!content) return 1;
-  
+
   // Extract text from Lexical content (simplified)
   const extractText = (node: any): string => {
-    if (typeof node === 'string') return node;
+    if (typeof node === "string") return node;
     if (node?.text) return node.text;
     if (node?.children) {
-      return node.children.map(extractText).join(' ');
+      return node.children.map(extractText).join(" ");
     }
-    return '';
+    return "";
   };
-  
+
   const text = extractText(content);
   const wordsPerMinute = 200;
   const wordCount = text.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / wordsPerMinute);
-  
+
   return Math.max(1, readingTime);
 };
 
@@ -150,74 +161,116 @@ const renderContent = (content: any) => {
     if (!node) return null;
 
     switch (node.type) {
-      case 'paragraph':
+      case "paragraph":
         return (
           <p key={index} className="mb-6 text-slate-700 leading-relaxed">
-            {node.children?.map((child: any, childIndex: number) => renderNode(child, childIndex))}
+            {node.children?.map((child: any, childIndex: number) =>
+              renderNode(child, childIndex)
+            )}
           </p>
         );
-      
-      case 'heading':
-        const headingLevel = node.tag || 'h2';
+
+      case "heading":
+        const headingLevel = node.tag || "h2";
         const headingClasses = {
-          h1: 'text-3xl font-bold mb-6 text-slate-900',
-          h2: 'text-2xl font-bold mb-4 text-slate-900',
-          h3: 'text-xl font-semibold mb-3 text-slate-900',
-          h4: 'text-lg font-semibold mb-2 text-slate-900',
-          h5: 'text-base font-semibold mb-2 text-slate-900',
-          h6: 'text-sm font-semibold mb-2 text-slate-900',
+          h1: "text-3xl font-bold mb-6 text-slate-900",
+          h2: "text-2xl font-bold mb-4 text-slate-900",
+          h3: "text-xl font-semibold mb-3 text-slate-900",
+          h4: "text-lg font-semibold mb-2 text-slate-900",
+          h5: "text-base font-semibold mb-2 text-slate-900",
+          h6: "text-sm font-semibold mb-2 text-slate-900",
         };
-        
-        const className = headingClasses[headingLevel as keyof typeof headingClasses] || headingClasses.h2;
-        const content = node.children?.map((child: any, childIndex: number) => renderNode(child, childIndex));
-        
+
+        const className =
+          headingClasses[headingLevel as keyof typeof headingClasses] ||
+          headingClasses.h2;
+        const content = node.children?.map((child: any, childIndex: number) =>
+          renderNode(child, childIndex)
+        );
+
         switch (headingLevel) {
-          case 'h1':
-            return <h1 key={index} className={className}>{content}</h1>;
-          case 'h2':
-            return <h2 key={index} className={className}>{content}</h2>;
-          case 'h3':
-            return <h3 key={index} className={className}>{content}</h3>;
-          case 'h4':
-            return <h4 key={index} className={className}>{content}</h4>;
-          case 'h5':
-            return <h5 key={index} className={className}>{content}</h5>;
-          case 'h6':
-            return <h6 key={index} className={className}>{content}</h6>;
+          case "h1":
+            return (
+              <h1 key={index} className={className}>
+                {content}
+              </h1>
+            );
+          case "h2":
+            return (
+              <h2 key={index} className={className}>
+                {content}
+              </h2>
+            );
+          case "h3":
+            return (
+              <h3 key={index} className={className}>
+                {content}
+              </h3>
+            );
+          case "h4":
+            return (
+              <h4 key={index} className={className}>
+                {content}
+              </h4>
+            );
+          case "h5":
+            return (
+              <h5 key={index} className={className}>
+                {content}
+              </h5>
+            );
+          case "h6":
+            return (
+              <h6 key={index} className={className}>
+                {content}
+              </h6>
+            );
           default:
-            return <h2 key={index} className={className}>{content}</h2>;
+            return (
+              <h2 key={index} className={className}>
+                {content}
+              </h2>
+            );
         }
-      
-      case 'text':
+
+      case "text":
         let textElement = node.text;
-        
-        if (node.format & 1) { // Bold
+
+        if (node.format & 1) {
+          // Bold
           textElement = <strong key={index}>{textElement}</strong>;
         }
-        if (node.format & 2) { // Italic  
+        if (node.format & 2) {
+          // Italic
           textElement = <em key={index}>{textElement}</em>;
         }
-        
+
         return textElement;
-      
-      case 'list':
-        const ListTag = node.listType === 'bullet' ? 'ul' : 'ol';
+
+      case "list":
+        const ListTag = node.listType === "bullet" ? "ul" : "ol";
         return (
           <ListTag key={index} className="mb-6 pl-6 space-y-2">
-            {node.children?.map((child: any, childIndex: number) => renderNode(child, childIndex))}
+            {node.children?.map((child: any, childIndex: number) =>
+              renderNode(child, childIndex)
+            )}
           </ListTag>
         );
-      
-      case 'listitem':
+
+      case "listitem":
         return (
           <li key={index} className="text-slate-700">
-            {node.children?.map((child: any, childIndex: number) => renderNode(child, childIndex))}
+            {node.children?.map((child: any, childIndex: number) =>
+              renderNode(child, childIndex)
+            )}
           </li>
         );
-      
+
       default:
         if (node.children) {
-          return node.children.map((child: any, childIndex: number) => renderNode(child, childIndex));
+          return node.children.map((child: any, childIndex: number) =>
+            renderNode(child, childIndex)
+          );
         }
         return null;
     }
@@ -225,12 +278,18 @@ const renderContent = (content: any) => {
 
   return (
     <div className="prose prose-lg max-w-none">
-      {content.root.children?.map((node: any, index: number) => renderNode(node, index))}
+      {content.root.children?.map((node: any, index: number) =>
+        renderNode(node, index)
+      )}
     </div>
   );
 };
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = await getPost(slug);
 
@@ -243,7 +302,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   return (
     <>
       <Header />
-      
+
       <main className="py-12 lg:py-20">
         <Container>
           {/* Back to Blog Link */}
@@ -293,14 +352,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   <User className="w-4 h-4" />
                   <span>{post.author.name}</span>
                 </div>
-                
+
                 <div className="flex items-center space-x-2">
                   <Calendar className="w-4 h-4" />
                   <time dateTime={post.publishedDate}>
                     {formatDate(post.publishedDate)}
                   </time>
                 </div>
-                
+
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4" />
                   <span>{readingTime} min de leitura</span>
@@ -323,9 +382,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             )}
 
             {/* Content */}
-            <div className="mb-12">
-              {renderContent(post.content)}
-            </div>
+            <div className="mb-12">{renderContent(post.content)}</div>
 
             {/* Tags */}
             {post.tags && post.tags.length > 0 && (
@@ -365,7 +422,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                       </span>
                     </div>
                   )}
-                  
+
                   <div>
                     <h4 className="text-lg font-semibold text-slate-900 mb-1">
                       {post.author.name}
@@ -380,7 +437,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </article>
         </Container>
       </main>
-      
+
       <Footer />
     </>
   );
