@@ -12,21 +12,21 @@ interface BlogSidebarProps {
 
 export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   const {
     data: categories = [],
     isLoading: categoriesLoading,
     error: categoriesError,
   } = useCategories();
 
-  const filteredCategories = categories.filter(category =>
+  const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (categoriesLoading) {
     return (
       <div className="space-y-6">
-        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+        <div className="w-full">
           <div className="animate-pulse space-y-4">
             <div className="h-4 bg-slate-200 rounded w-32"></div>
             <div className="space-y-3">
@@ -46,13 +46,14 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
   if (categoriesError) {
     return (
       <div className="space-y-6">
-        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+        <div className="w-full">
           <div className="text-center py-8">
             <h3 className="text-lg font-semibold text-red-600 mb-2">
               Erro ao carregar categorias
             </h3>
             <p className="text-slate-600 text-sm">
-              Não foi possível carregar as categorias. Tente novamente mais tarde.
+              Não foi possível carregar as categorias. Tente novamente mais
+              tarde.
             </p>
           </div>
         </div>
@@ -63,25 +64,10 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
   return (
     <div className="space-y-6">
       {/* Categories Widget */}
-      <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center">
-          <Folder className="w-5 h-5 mr-2 text-purple-600" />
+      <div className="w-full">
+        <h3 className="text-xl font-semibold text-slate-700 mb-4 flex items-center px-3 tracking-tight">
           Categorias
         </h3>
-
-        {/* Search Categories */}
-        <div className="mb-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-            <Input
-              type="text"
-              placeholder="Buscar categoria..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 text-sm"
-            />
-          </div>
-        </div>
 
         {/* All Posts Link */}
         <div className="mb-4">
@@ -89,8 +75,8 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
             href="/blog"
             className={`flex items-center justify-between p-3 rounded-lg transition-colors group ${
               !currentCategoryId
-                ? "bg-purple-50 text-purple-700 border border-purple-200"
-                : "hover:bg-slate-50 text-slate-700"
+                ? "bg-network-primary/5 text-network-primary border border-network-primary/10"
+                : "hover:bg-slate-50 text-network-primary hover:text-secondary"
             }`}
           >
             <span className="font-medium">Todos os Posts</span>
@@ -105,10 +91,10 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
               <Link
                 key={category.id}
                 href={`/blog/categoria/${category.slug}`}
-                className={`flex items-center justify-between p-3 rounded-lg transition-colors group ${
+                className={`flex items-center justify-between py-2 px-3 rounded-lg transition-colors group ${
                   currentCategoryId === category.id
-                    ? "bg-purple-50 text-purple-700 border border-purple-200"
-                    : "hover:bg-slate-50 text-slate-700"
+                    ? "bg-network-primary/5 text-network-primary border border-network-primary/10"
+                    : "hover:bg-slate-50 text-network-primary hover:text-secondary"
                 }`}
               >
                 <div className="flex-1">
@@ -120,7 +106,7 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
                   )}
                 </div>
                 <div className="flex items-center ml-3">
-                  <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full mr-2">
+                  <span className="text-xs bg-slate-100 text-network-primary px-2 py-1 rounded-full mr-2">
                     {category.postCount}
                   </span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -140,7 +126,7 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
       </div>
 
       {/* Recent Posts Widget */}
-      <RecentPostsWidget />
+      {/* <RecentPostsWidget /> */}
     </div>
   );
 }

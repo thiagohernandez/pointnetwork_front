@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar, User } from "lucide-react";
+import { ArrowRight, Calendar, User } from "lucide-react";
 
 interface Post {
   id: string;
@@ -43,9 +43,9 @@ export function BlogCard({ post }: BlogCardProps) {
   };
 
   return (
-    <article className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100">
+    <article className="group  transition-all duration-300 overflow-hidden">
       <Link href={`/blog/${post.slug}`} className="block">
-        <div className="relative aspect-video overflow-hidden">
+        <div className="relative aspect-[32/12] rounded-xl overflow-hidden">
           {post.featuredImage ? (
             <Image
               src={post.featuredImage.url}
@@ -61,7 +61,7 @@ export function BlogCard({ post }: BlogCardProps) {
               </span>
             </div>
           )}
-          
+
           {post.categories.length > 0 && (
             <div className="absolute top-4 left-4">
               <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-purple-600 rounded-full">
@@ -72,7 +72,7 @@ export function BlogCard({ post }: BlogCardProps) {
         </div>
       </Link>
 
-      <div className="p-6">
+      <div className="py-6">
         <div className="flex items-center text-sm text-slate-500 mb-3 space-x-4">
           <div className="flex items-center space-x-1">
             <Calendar className="w-4 h-4" />
@@ -87,7 +87,7 @@ export function BlogCard({ post }: BlogCardProps) {
         </div>
 
         <Link href={`/blog/${post.slug}`}>
-          <h2 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-purple-600 transition-colors">
+          <h2 className="text-xl font-semibold text-network-primary mb-3 line-clamp-2 group-hover:text-primary transition-colors tracking-tight">
             {post.title}
           </h2>
         </Link>
@@ -98,22 +98,10 @@ export function BlogCard({ post }: BlogCardProps) {
 
         <Link
           href={`/blog/${post.slug}`}
-          className="inline-flex items-center text-sm font-semibold text-purple-600 hover:text-purple-700 transition-colors"
+          className="inline-flex items-center text-sm font-semibold text-network-primary hover:text-purple-700 transition-colors"
         >
-          Ler mais
-          <svg
-            className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          Continue lendo
+          <ArrowRight className="w-4 h-4 ml-2" />
         </Link>
       </div>
     </article>

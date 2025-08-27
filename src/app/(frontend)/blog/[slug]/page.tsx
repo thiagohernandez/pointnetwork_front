@@ -7,6 +7,8 @@ import { Calendar, User, ArrowLeft, Clock } from "lucide-react";
 import Footer from "@/components/ui/footer/footer";
 import { Header } from "@/components/ui/header";
 import Container from "@/components/ui/container";
+import HeroBasic from "@/components/ui/hero/hero-basic";
+import { BlogSidebar } from "@/components/blog/BlogSidebar";
 
 interface Post {
   id: string;
@@ -291,6 +293,7 @@ export default async function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
   const post = await getPost(slug);
 
   if (!post) {
@@ -302,139 +305,141 @@ export default async function BlogPost({
   return (
     <>
       <Header />
+      <HeroBasic
+        title={post.title}
+        description="Fique por dentro das últimas novidades sobre gestão de condomínios, tecnologia e inovação"
+      />
 
       <main className="py-12 lg:py-20">
         <Container>
-          {/* Back to Blog Link */}
-          <div className="mb-8">
-            <Link
-              href="/blog"
-              className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-purple-600 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar ao Blog
-            </Link>
-          </div>
+          <div className="flex flex-col lg:flex-row gap-12 justify-between">
+            {/* Main Content */}
+            <div className="flex-1">
+              <article className="max-w-4xl">
+                {/* Header */}
+                <header className="mb-12">
+                  {/* Categories */}
 
-          <article className="max-w-4xl mx-auto">
-            {/* Header */}
-            <header className="mb-12">
-              {/* Categories */}
-              {post.categories.length > 0 && (
-                <div className="mb-6">
-                  <div className="flex flex-wrap gap-2">
-                    {post.categories.map((category) => (
-                      <Link
-                        key={category.id}
-                        href={`/blog/categoria/${category.slug}`}
-                        className="inline-block px-3 py-1 text-xs font-semibold text-purple-700 bg-purple-100 rounded-full hover:bg-purple-200 transition-colors"
-                      >
-                        {category.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Title */}
-              <h1 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                  {/* Title */}
+                  {/* <h1 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
                 {post.title}
-              </h1>
+              </h1> */}
 
-              {/* Excerpt */}
-              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+                  {/* Excerpt */}
+                  {/* <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 {post.excerpt}
-              </p>
+              </p> */}
 
-              {/* Meta Info */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500">
-                <div className="flex items-center space-x-2">
-                  <User className="w-4 h-4" />
-                  <span>{post.author.name}</span>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-4 h-4" />
-                  <time dateTime={post.publishedDate}>
-                    {formatDate(post.publishedDate)}
-                  </time>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4" />
-                  <span>{readingTime} min de leitura</span>
-                </div>
-              </div>
-            </header>
-
-            {/* Featured Image */}
-            {post.featuredImage && (
-              <div className="mb-12 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src={post.featuredImage.url}
-                  alt={post.featuredImage.alt || post.title}
-                  width={1200}
-                  height={600}
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-            )}
-
-            {/* Content */}
-            <div className="mb-12">{renderContent(post.content)}</div>
-
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="mb-12 p-6 bg-slate-50 rounded-xl">
-                <h3 className="text-sm font-semibold text-slate-900 mb-3 uppercase tracking-wide">
-                  Tags
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tagObj, index) => (
-                    <span
-                      key={index}
-                      className="inline-block px-3 py-1 text-sm bg-white text-slate-600 rounded-full border border-slate-200"
-                    >
-                      #{tagObj.tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Author Bio */}
-            {post.author.bio && (
-              <div className="border-t border-slate-200 pt-8">
-                <div className="flex items-start space-x-4">
-                  {post.author.avatar ? (
-                    <Image
-                      src={post.author.avatar.url}
-                      alt={post.author.name}
-                      width={64}
-                      height={64}
-                      className="rounded-full"
-                    />
-                  ) : (
-                    <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
-                      <span className="text-white text-lg font-bold">
-                        {post.author.name.charAt(0)}
-                      </span>
+                  {/* Meta Info */}
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500">
+                    <div className="flex items-center space-x-2">
+                      <User className="w-4 h-4" />
+                      <span>{post.author.name}</span>
                     </div>
-                  )}
 
-                  <div>
-                    <h4 className="text-lg font-semibold text-slate-900 mb-1">
-                      {post.author.name}
-                    </h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">
-                      {post.author.bio}
-                    </p>
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-4 h-4" />
+                      <time dateTime={post.publishedDate}>
+                        {formatDate(post.publishedDate)}
+                      </time>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-4 h-4" />
+                      <span>{readingTime} min de leitura</span>
+                    </div>
                   </div>
-                </div>
-              </div>
-            )}
-          </article>
+                </header>
+
+                {/* Featured Image */}
+                {post.featuredImage && (
+                  <div className="mb-12 rounded-xl overflow-hidden shadow-lg">
+                    <Image
+                      src={post.featuredImage.url}
+                      alt={post.featuredImage.alt || post.title}
+                      width={1200}
+                      height={600}
+                      className="w-full h-auto"
+                      priority
+                    />
+                  </div>
+                )}
+
+                {/* Content */}
+                <div className="mb-12">{renderContent(post.content)}</div>
+
+                {/* Tags */}
+                {post.tags && post.tags.length > 0 && (
+                  <div className="mb-12 p-6 bg-slate-50 rounded-xl">
+                    <h3 className="text-sm font-semibold text-slate-900 mb-3 uppercase tracking-wide">
+                      Tags
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map((tagObj, index) => (
+                        <span
+                          key={index}
+                          className="inline-block px-3 py-1 text-sm bg-white text-slate-600 rounded-full border border-slate-200"
+                        >
+                          #{tagObj.tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Author Bio */}
+                {post.categories.length > 0 && (
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-2">
+                      {post.categories.map((category) => (
+                        <Link
+                          key={category.id}
+                          href={`/blog/categoria/${category.slug}`}
+                          className="inline-block px-3 py-1 text-xs font-semibold text-purple-700 bg-purple-100 rounded-full hover:bg-purple-200 transition-colors"
+                        >
+                          {category.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {post.author.bio && (
+                  <div className="border-t border-slate-200 pt-8">
+                    <div className="flex items-start space-x-4">
+                      {post.author.avatar ? (
+                        <Image
+                          src={post.author.avatar.url}
+                          alt={post.author.name}
+                          width={64}
+                          height={64}
+                          className="rounded-full"
+                        />
+                      ) : (
+                        <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-lg font-bold">
+                            {post.author.name.charAt(0)}
+                          </span>
+                        </div>
+                      )}
+
+                      <div>
+                        <h4 className="text-lg font-semibold text-slate-900 mb-1">
+                          {post.author.name}
+                        </h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">
+                          {post.author.bio}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </article>
+            </div>
+            {/* Sidebar */}
+            <aside className="lg:w-80 flex-shrink-0">
+              <BlogSidebar />
+            </aside>
+          </div>
         </Container>
       </main>
 

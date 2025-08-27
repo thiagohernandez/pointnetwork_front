@@ -41,7 +41,7 @@ const Blog = async ({ searchParams }: BlogPageProps) => {
       />
       <main className="bg-slate-50 py-16 lg:py-32">
         <Container>
-          <div className="flex flex-col lg:flex-row gap-12">
+          <div className="flex flex-col lg:flex-row gap-12 justify-between">
             {/* Main Content */}
             <div className="flex-1">
               <BlogList

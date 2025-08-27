@@ -6,6 +6,7 @@ import { Header } from "@/components/ui/header";
 import Container from "@/components/ui/container";
 import { BlogList } from "@/components/blog/BlogList";
 import { BlogSidebar } from "@/components/blog/BlogSidebar";
+import HeroBasic from "@/components/ui/hero/hero-basic";
 
 interface Category {
   id: string;
@@ -92,25 +93,15 @@ export default async function CategoryPage({
   return (
     <>
       <Header />
+      <HeroBasic
+        title={category.name}
+        description={category.description ? category.description : ""}
+      />
 
       <main className="bg-slate-50 py-16 lg:py-32">
         <Container>
-          {/* Page Header */}
-          <div className="mb-12">
-            <div className="text-center">
-              <h1 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-4">
-                {category.name}
-              </h1>
-              {category.description && (
-                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  {category.description}
-                </p>
-              )}
-            </div>
-          </div>
-
           {/* Content with Sidebar */}
-          <div className="flex flex-col lg:flex-row gap-12">
+          <div className="flex flex-col lg:flex-row gap-12 justify-between">
             {/* Main Content */}
             <div className="flex-1">
               <BlogList
