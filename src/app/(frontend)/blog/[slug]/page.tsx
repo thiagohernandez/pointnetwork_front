@@ -326,7 +326,7 @@ export default async function BlogPost({
                     {post.categories.map((category) => (
                       <Link
                         key={category.id}
-                        href={`/blog?category=${category.id}`}
+                        href={`/blog/categoria/${category.slug}`}
                         className="inline-block px-3 py-1 text-xs font-semibold text-purple-700 bg-purple-100 rounded-full hover:bg-purple-200 transition-colors"
                       >
                         {category.name}

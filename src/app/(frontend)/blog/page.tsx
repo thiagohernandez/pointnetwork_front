@@ -5,16 +5,19 @@ import { Header } from "@/components/ui/header";
 import { HeroBasic } from "@/components/ui/hero";
 import { generateMetadata } from "@/components/seo/metadata";
 import { BlogList } from "@/components/blog/BlogList";
+import { BlogSidebar } from "@/components/blog/BlogSidebar";
+import Container from "@/components/ui/container";
 
 export const metadata: Metadata = generateMetadata({
   title: "Blog | PointNetwork",
-  description: "Fique por dentro das últimas novidades sobre gestão de condomínios, tecnologia e inovação.",
+  description:
+    "Fique por dentro das últimas novidades sobre gestão de condomínios, tecnologia e inovação.",
   keywords: [
     "blog gestão condomínios",
     "tecnologia predial",
     "inovação condominial",
     "sindicos",
-    "administradoras"
+    "administradoras",
   ],
 });
 
@@ -28,7 +31,7 @@ interface BlogPageProps {
 
 const Blog = async ({ searchParams }: BlogPageProps) => {
   const params = await searchParams;
-  
+
   return (
     <>
       <Header />
@@ -37,11 +40,22 @@ const Blog = async ({ searchParams }: BlogPageProps) => {
         description="Fique por dentro das últimas novidades sobre gestão de condomínios, tecnologia e inovação"
       />
       <main className="bg-slate-50 py-16 lg:py-32">
-        <BlogList 
-          initialPage={parseInt(params.page || "1")}
-          initialCategory={params.category || ""}
-          initialSearch={params.search || ""}
-        />
+        <Container>
+          <div className="flex flex-col lg:flex-row gap-12">
+            {/* Main Content */}
+            <div className="flex-1">
+              <BlogList
+                initialPage={parseInt(params.page || "1")}
+                initialCategory={params.category || ""}
+                initialSearch={params.search || ""}
+              />
+            </div>
+            {/* Sidebar */}
+            <aside className="lg:w-80 flex-shrink-0">
+              <BlogSidebar currentCategoryId={params.category} />
+            </aside>
+          </div>
+        </Container>
       </main>
       <Footer />
     </>

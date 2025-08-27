@@ -1,95 +1,71 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Container from "@/components/ui/container";
 import { BlogCard } from "./BlogCard";
 import { BlogFilters } from "./BlogFilters";
 import { BlogPagination } from "./BlogPagination";
-
-interface Post {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: any;
-  featuredImage?: {
-    id: string;
-    url: string;
-    alt?: string;
-  };
-  author: {
-    id: string;
-    name: string;
-    bio?: string;
-    avatar?: {
-      url: string;
-    };
-  };
-  categories: Array<{
-    id: string;
-    name: string;
-    slug: string;
-  }>;
-  tags: Array<{
-    tag: string;
-  }>;
-  publishedDate: string;
-  status: "draft" | "published";
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface ApiResponse {
-  docs: Post[];
-  totalDocs: number;
-  limit: number;
-  totalPages: number;
-  page: number;
-  pagingCounter: number;
-  hasPrevPage: boolean;
-  hasNextPage: boolean;
-  prevPage: number | null;
-  nextPage: number | null;
-}
-
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-}
+import { usePosts, useCategories } from "@/hooks/useBlogQueries";
 
 interface BlogListProps {
   initialPage: number;
   initialCategory: string;
   initialSearch: string;
+  showFilters?: boolean;
 }
 
-export function BlogList({ initialPage, initialCategory, initialSearch }: BlogListProps) {
+export function BlogList({
+  initialPage,
+  initialCategory,
+  initialSearch,
+  showFilters = true,
+}: BlogListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [pagination, setPagination] = useState({
-    page: initialPage,
-    totalPages: 1,
-    totalDocs: 0,
-    hasNextPage: false,
-    hasPrevPage: false,
-  });
-  
+
   // Get current values from URL
-  const currentPage = parseInt(searchParams.get("page") || initialPage.toString());
+  const currentPage = parseInt(
+    searchParams.get("page") || initialPage.toString()
+  );
+  // For category pages, use initialCategory if no category in search params
+  // For main blog page, use search params category or empty string
   const selectedCategory = searchParams.get("category") || initialCategory;
   const searchQuery = searchParams.get("search") || initialSearch;
 
+  // React Query hooks
+  const {
+    data: postsData,
+    isLoading: postsLoading,
+    error: postsError,
+  } = usePosts(currentPage, selectedCategory, searchQuery);
+
+  const { data: categories = [], isLoading: categoriesLoading } =
+    useCategories();
+
+  const posts = postsData?.docs || [];
+  const pagination = postsData
+    ? {
+        page: postsData.page,
+        totalPages: postsData.totalPages,
+        totalDocs: postsData.totalDocs,
+        hasNextPage: postsData.hasNextPage,
+        hasPrevPage: postsData.hasPrevPage,
+      }
+    : {
+        page: 1,
+        totalPages: 1,
+        totalDocs: 0,
+        hasNextPage: false,
+        hasPrevPage: false,
+      };
+
   // Helper function to update URL parameters
-  const updateUrlParams = (updates: { page?: number; category?: string; search?: string }) => {
+  const updateUrlParams = (updates: {
+    page?: number;
+    category?: string;
+    search?: string;
+  }) => {
     const params = new URLSearchParams(searchParams);
-    
+
     if (updates.page !== undefined) {
       if (updates.page === 1) {
         params.delete("page");
@@ -97,7 +73,7 @@ export function BlogList({ initialPage, initialCategory, initialSearch }: BlogLi
         params.set("page", updates.page.toString());
       }
     }
-    
+
     if (updates.category !== undefined) {
       if (updates.category === "") {
         params.delete("category");
@@ -105,7 +81,7 @@ export function BlogList({ initialPage, initialCategory, initialSearch }: BlogLi
         params.set("category", updates.category);
       }
     }
-    
+
     if (updates.search !== undefined) {
       if (updates.search === "") {
         params.delete("search");
@@ -113,79 +89,15 @@ export function BlogList({ initialPage, initialCategory, initialSearch }: BlogLi
         params.set("search", updates.search);
       }
     }
-    
+
     const queryString = params.toString();
     const newUrl = queryString ? `/blog?${queryString}` : "/blog";
     router.push(newUrl);
   };
 
-  const fetchPosts = async (page: number = 1, category?: string, search?: string) => {
-    try {
-      setLoading(true);
-      
-      const params = new URLSearchParams({
-        page: page.toString(),
-        limit: "9",
-        where: JSON.stringify({
-          status: { equals: "published" },
-          ...(category && { categories: { in: [category] } }),
-          ...(search && { 
-            or: [
-              { title: { contains: search } },
-              { excerpt: { contains: search } }
-            ]
-          })
-        }),
-        sort: "-publishedDate",
-        populate: "author,categories,featuredImage"
-      });
-
-      const response = await fetch(`/api/posts?${params}`);
-      
-      if (!response.ok) {
-        throw new Error("Failed to fetch posts");
-      }
-      
-      const data: ApiResponse = await response.json();
-      
-      setPosts(data.docs);
-      setPagination({
-        page: data.page,
-        totalPages: data.totalPages,
-        totalDocs: data.totalDocs,
-        hasNextPage: data.hasNextPage,
-        hasPrevPage: data.hasPrevPage,
-      });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch("/api/categories?limit=100");
-      if (response.ok) {
-        const data = await response.json();
-        setCategories(data.docs);
-      }
-    } catch (err) {
-      console.error("Failed to fetch categories:", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    fetchPosts(currentPage, selectedCategory, searchQuery);
-  }, [currentPage, selectedCategory, searchQuery]);
-
   const handlePageChange = (newPage: number) => {
     updateUrlParams({ page: newPage });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleCategoryChange = (categoryId: string) => {
@@ -196,34 +108,28 @@ export function BlogList({ initialPage, initialCategory, initialSearch }: BlogLi
     updateUrlParams({ search: query, page: 1 });
   };
 
-  if (error) {
+  if (postsError) {
     return (
-      <Container>
-        <div className="text-center py-16">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">Erro ao carregar posts</h2>
-          <p className="text-slate-600">{error}</p>
-          <button
-            onClick={() => fetchPosts(currentPage, selectedCategory, searchQuery)}
-            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Tentar novamente
-          </button>
-        </div>
-      </Container>
+      <div className="text-center py-16">
+        <h2 className="text-2xl font-bold text-red-600 mb-4">
+          Erro ao carregar posts
+        </h2>
+        <p className="text-slate-600">
+          {postsError instanceof Error ? postsError.message : "Ocorreu um erro"}
+        </p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Tentar novamente
+        </button>
+      </div>
     );
   }
 
   return (
-    <Container>
-      <BlogFilters
-        categories={categories}
-        selectedCategory={selectedCategory}
-        searchQuery={searchQuery}
-        onCategoryChange={handleCategoryChange}
-        onSearchChange={handleSearchChange}
-      />
-
-      {loading ? (
+    <div>
+      {postsLoading || categoriesLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="animate-pulse">
@@ -241,7 +147,7 @@ export function BlogList({ initialPage, initialCategory, initialSearch }: BlogLi
               <BlogCard key={post.id} post={post} />
             ))}
           </div>
-          
+
           {pagination.totalPages > 1 && (
             <div className="mt-16">
               <BlogPagination
@@ -256,7 +162,9 @@ export function BlogList({ initialPage, initialCategory, initialSearch }: BlogLi
         </>
       ) : (
         <div className="text-center py-16">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">Nenhum post encontrado</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4">
+            Nenhum post encontrado
+          </h2>
           <p className="text-slate-600">
             {searchQuery || selectedCategory
               ? "Tente ajustar seus filtros de busca."
@@ -264,6 +172,6 @@ export function BlogList({ initialPage, initialCategory, initialSearch }: BlogLi
           </p>
         </div>
       )}
-    </Container>
+    </div>
   );
 }
