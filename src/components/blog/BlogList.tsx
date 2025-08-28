@@ -2,22 +2,20 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { BlogCard } from "./BlogCard";
-import { BlogFilters } from "./BlogFilters";
+// import { BlogFilters } from "./BlogFilters";
 import { BlogPagination } from "./BlogPagination";
-import { usePosts, useCategories } from "@/hooks/useBlogQueries";
+import { usePosts } from "@/hooks/useBlogQueries";
 
 interface BlogListProps {
   initialPage: number;
   initialCategory: string;
   initialSearch: string;
-  showFilters?: boolean;
 }
 
 export function BlogList({
   initialPage,
   initialCategory,
   initialSearch,
-  showFilters = true,
 }: BlogListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -38,8 +36,8 @@ export function BlogList({
     error: postsError,
   } = usePosts(currentPage, selectedCategory, searchQuery);
 
-  const { data: categories = [], isLoading: categoriesLoading } =
-    useCategories();
+  // const { data: categories = [], isLoading: categoriesLoading } =
+  //   useCategories();
 
   const posts = postsData?.docs || [];
   const pagination = postsData
@@ -100,13 +98,13 @@ export function BlogList({
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleCategoryChange = (categoryId: string) => {
-    updateUrlParams({ category: categoryId, page: 1 });
-  };
+  // const handleCategoryChange = (categoryId: string) => {
+  //   updateUrlParams({ category: categoryId, page: 1 });
+  // };
 
-  const handleSearchChange = (query: string) => {
-    updateUrlParams({ search: query, page: 1 });
-  };
+  // const handleSearchChange = (query: string) => {
+  //   updateUrlParams({ search: query, page: 1 });
+  // };
 
   if (postsError) {
     return (
@@ -129,8 +127,8 @@ export function BlogList({
 
   return (
     <div>
-      {postsLoading || categoriesLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      {postsLoading ? (
+        <div className="grid grid-cols-1 gap-8">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="animate-pulse">
               <div className="bg-slate-200 h-48 rounded-lg mb-4"></div>

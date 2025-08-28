@@ -108,7 +108,6 @@ export default async function CategoryPage({
                 initialPage={parseInt(searchParamsData.page || "1")}
                 initialCategory={category.id}
                 initialSearch={searchParamsData.search || ""}
-                showFilters={false}
               />
             </div>
             {/* Sidebar */}

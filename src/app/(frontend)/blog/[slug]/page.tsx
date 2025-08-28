@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, User, ArrowLeft, Clock } from "lucide-react";
+import { Calendar, User, Clock } from "lucide-react";
 import Footer from "@/components/ui/footer/footer";
 import { Header } from "@/components/ui/header";
 import Container from "@/components/ui/container";

@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { Folder, ChevronRight, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { useCategories, useRecentPosts } from "@/hooks/useBlogQueries";
+import { ChevronRight } from "lucide-react";
+import { useCategories } from "@/hooks/useBlogQueries";
 
 interface BlogSidebarProps {
   currentCategoryId?: string;
 }
 
 export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
 
   const {
     data: categories = [],
@@ -19,9 +17,9 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
     error: categoriesError,
   } = useCategories();
 
-  const filteredCategories = categories.filter((category) =>
-    category.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredCategories = categories.filter((category) =>
+  //   category.name.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
   if (categoriesLoading) {
     return (
@@ -86,8 +84,8 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
 
         {/* Categories List */}
         <div className="space-y-2">
-          {filteredCategories.length > 0 ? (
-            filteredCategories.map((category) => (
+          {categories.length > 0 ? (
+            categories.map((category) => (
               <Link
                 key={category.id}
                 href={`/blog/categoria/${category.slug}`}
@@ -113,10 +111,6 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
                 </div>
               </Link>
             ))
-          ) : searchQuery ? (
-            <p className="text-sm text-slate-500 text-center py-4">
-              Nenhuma categoria encontrada
-            </p>
           ) : (
             <p className="text-sm text-slate-500 text-center py-4">
               Nenhuma categoria disponível
@@ -132,82 +126,82 @@ export function BlogSidebar({ currentCategoryId }: BlogSidebarProps) {
 }
 
 // Recent Posts Widget Component
-function RecentPostsWidget() {
-  const {
-    data: recentPosts = [],
-    isLoading: recentPostsLoading,
-    error: recentPostsError,
-  } = useRecentPosts(5);
+// function RecentPostsWidget() {
+//   const {
+//     data: recentPosts = [],
+//     isLoading: recentPostsLoading,
+//     error: recentPostsError,
+//   } = useRecentPosts(5);
 
-  if (recentPostsLoading) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-        <div className="animate-pulse">
-          <div className="h-4 bg-slate-200 rounded w-32 mb-4"></div>
-          <div className="space-y-3">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="flex space-x-3">
-                <div className="w-16 h-16 bg-slate-200 rounded"></div>
-                <div className="flex-1">
-                  <div className="h-4 bg-slate-200 rounded w-full mb-2"></div>
-                  <div className="h-3 bg-slate-200 rounded w-20"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+//   if (recentPostsLoading) {
+//     return (
+//       <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+//         <div className="animate-pulse">
+//           <div className="h-4 bg-slate-200 rounded w-32 mb-4"></div>
+//           <div className="space-y-3">
+//             {Array.from({ length: 3 }).map((_, i) => (
+//               <div key={i} className="flex space-x-3">
+//                 <div className="w-16 h-16 bg-slate-200 rounded"></div>
+//                 <div className="flex-1">
+//                   <div className="h-4 bg-slate-200 rounded w-full mb-2"></div>
+//                   <div className="h-3 bg-slate-200 rounded w-20"></div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   }
 
-  if (recentPostsError) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-        <h3 className="text-lg font-semibold text-slate-900 mb-4">
-          Posts Recentes
-        </h3>
-        <div className="text-center py-4">
-          <p className="text-sm text-slate-500">
-            Erro ao carregar posts recentes
-          </p>
-        </div>
-      </div>
-    );
-  }
+//   if (recentPostsError) {
+//     return (
+//       <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+//         <h3 className="text-lg font-semibold text-slate-900 mb-4">
+//           Posts Recentes
+//         </h3>
+//         <div className="text-center py-4">
+//           <p className="text-sm text-slate-500">
+//             Erro ao carregar posts recentes
+//           </p>
+//         </div>
+//       </div>
+//     );
+//   }
 
-  return (
-    <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-      <h3 className="text-lg font-semibold text-slate-900 mb-4">
-        Posts Recentes
-      </h3>
+//   return (
+//     <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+//       <h3 className="text-lg font-semibold text-slate-900 mb-4">
+//         Posts Recentes
+//       </h3>
 
-      <div className="space-y-4">
-        {recentPosts.map((post) => (
-          <Link
-            key={post.id}
-            href={`/blog/${post.slug}`}
-            className="flex space-x-3 group hover:bg-slate-50 p-2 rounded-lg transition-colors"
-          >
-            {post.featuredImage && (
-              <div className="w-16 h-16 flex-shrink-0">
-                <img
-                  src={post.featuredImage.url}
-                  alt={post.featuredImage.alt || post.title}
-                  className="w-full h-full object-cover rounded"
-                />
-              </div>
-            )}
-            <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-medium text-slate-900 line-clamp-2 group-hover:text-purple-600">
-                {post.title}
-              </h4>
-              <p className="text-xs text-slate-500 mt-1">
-                {new Date(post.publishedDate).toLocaleDateString("pt-BR")}
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
+//       <div className="space-y-4">
+//         {recentPosts.map((post) => (
+//           <Link
+//             key={post.id}
+//             href={`/blog/${post.slug}`}
+//             className="flex space-x-3 group hover:bg-slate-50 p-2 rounded-lg transition-colors"
+//           >
+//             {post.featuredImage && (
+//               <div className="w-16 h-16 flex-shrink-0">
+//                 <img
+//                   src={post.featuredImage.url}
+//                   alt={post.featuredImage.alt || post.title}
+//                   className="w-full h-full object-cover rounded"
+//                 />
+//               </div>
+//             )}
+//             <div className="flex-1 min-w-0">
+//               <h4 className="text-sm font-medium text-slate-900 line-clamp-2 group-hover:text-purple-600">
+//                 {post.title}
+//               </h4>
+//               <p className="text-xs text-slate-500 mt-1">
+//                 {new Date(post.publishedDate).toLocaleDateString("pt-BR")}
+//               </p>
+//             </div>
+//           </Link>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
