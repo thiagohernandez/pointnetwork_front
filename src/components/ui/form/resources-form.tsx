@@ -54,6 +54,21 @@ export default function ResourceForm() {
   });
 
   async function onSubmit(data: FormValues) {
+    // Always attempt submission - validation will show errors if needed
+    const validation = formSchema.safeParse(data);
+    if (!validation.success) {
+      // Force form to show all errors
+      const fieldErrors = validation.error.flatten().fieldErrors;
+      Object.entries(fieldErrors).forEach(([field, messages]) => {
+        if (messages && messages.length > 0) {
+          form.setError(field as keyof FormValues, {
+            message: messages[0]
+          });
+        }
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Simulando envio do formulário
@@ -170,13 +185,34 @@ export default function ResourceForm() {
             <div className="flex w-full justify-start pt-2">
               <Button
                 type="submit"
-                disabled={isSubmitting || !form.formState.isValid}
+                disabled={isSubmitting}
                 variant="primary"
               >
-                Baixar grátis
+                {isSubmitting ? "Enviando..." : "Baixar grátis"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
+            {Object.keys(form.formState.errors).length > 0 && (
+              <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-sm text-red-600 font-medium mb-1">
+                  Por favor, corrija os seguintes erros:
+                </p>
+                <ul className="text-sm text-red-600 list-disc list-inside space-y-1">
+                  {form.formState.errors.nome && (
+                    <li>Nome: {form.formState.errors.nome.message}</li>
+                  )}
+                  {form.formState.errors.email && (
+                    <li>Email: {form.formState.errors.email.message}</li>
+                  )}
+                  {form.formState.errors.privacidade && (
+                    <li>Privacidade: {form.formState.errors.privacidade.message}</li>
+                  )}
+                  {form.formState.errors.ads && (
+                    <li>Novidades: {form.formState.errors.ads.message}</li>
+                  )}
+                </ul>
+              </div>
+            )}
           </form>
         </Form>
       )}
