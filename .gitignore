@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+.htaccess
+minha-app-nextjs.zipminha-app-nextjs.zip
