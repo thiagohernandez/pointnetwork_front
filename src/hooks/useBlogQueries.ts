@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
+// Get the API base URL from environment variable
+const API_BASE_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || "";
+
 interface Post {
   id: string;
   title: string;
@@ -94,7 +97,7 @@ export const usePosts = (page: number = 1, category?: string, search?: string) =
         params.set("where", JSON.stringify(combinedWhere));
       }
 
-      const response = await fetch(`/api/posts?${params}`);
+      const response = await fetch(`${API_BASE_URL}/api/posts?${params}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch posts");
@@ -111,7 +114,7 @@ export const useCategories = () => {
   return useQuery({
     queryKey: ["categories"],
     queryFn: async (): Promise<Category[]> => {
-      const response = await fetch("/api/categories?limit=100&sort=name");
+      const response = await fetch(`${API_BASE_URL}/api/categories?limit=100&sort=name`);
       
       if (!response.ok) {
         throw new Error("Failed to fetch categories");
@@ -124,7 +127,7 @@ export const useCategories = () => {
         data.docs.map(async (category: Category) => {
           try {
             const postsResponse = await fetch(
-              `/api/posts?where[categories][in][]=${category.id}&where[status][equals]=published&limit=0`
+              `${API_BASE_URL}/api/posts?where[categories][in][]=${category.id}&where[status][equals]=published&limit=0`
             );
             
             if (postsResponse.ok) {
@@ -151,9 +154,9 @@ export const useRecentPosts = (limit: number = 5) => {
     queryKey: ["recent-posts", limit],
     queryFn: async (): Promise<Post[]> => {
       const response = await fetch(
-        `/api/posts?where[status][equals]=published&sort=-publishedDate&limit=${limit}&populate=featuredImage`
+        `${API_BASE_URL}/api/posts?where[status][equals]=published&sort=-publishedDate&limit=${limit}&populate=featuredImage`
       );
-      
+
       if (!response.ok) {
         throw new Error("Failed to fetch recent posts");
       }
@@ -162,5 +165,31 @@ export const useRecentPosts = (limit: number = 5) => {
       return data.docs || [];
     },
     staleTime: 1000 * 60 * 5, // 5 minutes
+  });
+};
+
+// Fetch single post by slug
+export const usePost = (slug: string) => {
+  return useQuery({
+    queryKey: ["post", slug],
+    queryFn: async (): Promise<Post | null> => {
+      const response = await fetch(
+        `${API_BASE_URL}/api/posts?where[slug][equals]=${slug}&where[status][equals]=published&populate=author,categories,featuredImage`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch post");
+      }
+
+      const data: ApiResponse = await response.json();
+
+      if (data.docs && data.docs.length > 0) {
+        return data.docs[0];
+      }
+
+      return null;
+    },
+    staleTime: 1000 * 60 * 5, // 5 minutes
+    enabled: !!slug, // Only run query if slug exists
   });
 };

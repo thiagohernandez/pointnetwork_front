@@ -50,12 +50,15 @@ interface Post {
 
 async function getPost(slug: string): Promise<Post | null> {
   try {
-    // Use full URL for server-side requests, relative URL for client-side
     const baseUrl =
       process.env.NEXT_PUBLIC_PAYLOAD_URL || "http://localhost:3000";
+
     const response = await fetch(
       `${baseUrl}/api/posts?where[slug][equals]=${slug}&where[status][equals]=published&populate=author,categories,featuredImage`,
-      { next: { revalidate: 3600 } }
+      {
+        next: { revalidate: 3600 },
+        cache: 'force-cache'
+      }
     );
 
     if (!response.ok) {
@@ -135,7 +138,6 @@ const formatDate = (dateString: string) => {
 const estimateReadingTime = (content: any): number => {
   if (!content) return 1;
 
-  // Extract text from Lexical content (simplified)
   const extractText = (node: any): string => {
     if (typeof node === "string") return node;
     if (node?.text) return node.text;
@@ -153,7 +155,6 @@ const estimateReadingTime = (content: any): number => {
   return Math.max(1, readingTime);
 };
 
-// Render Lexical content (simplified version)
 const renderContent = (content: any) => {
   if (!content || !content.root) {
     return <p className="text-slate-600">Conteúdo não disponível.</p>;
@@ -239,11 +240,9 @@ const renderContent = (content: any) => {
         let textElement = node.text;
 
         if (node.format & 1) {
-          // Bold
           textElement = <strong key={index}>{textElement}</strong>;
         }
         if (node.format & 2) {
-          // Italic
           textElement = <em key={index}>{textElement}</em>;
         }
 
@@ -293,7 +292,6 @@ export default async function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
   const post = await getPost(slug);
 
   if (!post) {
@@ -318,18 +316,6 @@ export default async function BlogPost({
               <article className="max-w-4xl">
                 {/* Header */}
                 <header className="mb-12">
-                  {/* Categories */}
-
-                  {/* Title */}
-                  {/* <h1 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                {post.title}
-              </h1> */}
-
-                  {/* Excerpt */}
-                  {/* <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                {post.excerpt}
-              </p> */}
-
                   {/* Meta Info */}
                   <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500">
                     <div className="flex items-center space-x-2">
@@ -387,7 +373,7 @@ export default async function BlogPost({
                   </div>
                 )}
 
-                {/* Author Bio */}
+                {/* Categories */}
                 {post.categories.length > 0 && (
                   <div className="mb-6">
                     <div className="flex flex-wrap gap-2">
@@ -403,6 +389,8 @@ export default async function BlogPost({
                     </div>
                   </div>
                 )}
+
+                {/* Author Bio */}
                 {post.author.bio && (
                   <div className="border-t border-slate-200 pt-8">
                     <div className="flex items-start space-x-4">
