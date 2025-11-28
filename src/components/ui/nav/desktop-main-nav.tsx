@@ -156,12 +156,12 @@ const DesktopMainNav = () => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      {/* <Link
+      <Link
         href="/blog"
         className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2"
       >
         Blog
-      </Link> */}
+      </Link>
       {/* <Link
         href="/recursos"
         className="text-sm font-semibold text-white hover:text-purple-300 transition-colors p-2"

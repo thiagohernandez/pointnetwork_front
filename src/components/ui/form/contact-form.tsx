@@ -66,34 +66,59 @@ export default function ContactForm({
   });
 
   async function onSubmit(data: FormValues) {
+    // Always attempt submission - validation will show errors if needed
+    const validation = formSchema.safeParse(data);
+    if (!validation.success) {
+      // Force form to show all errors
+      const fieldErrors = validation.error.flatten().fieldErrors;
+      Object.entries(fieldErrors).forEach(([field, messages]) => {
+        if (messages && messages.length > 0) {
+          form.setError(field as keyof FormValues, {
+            message: messages[0],
+          });
+        }
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    console.log(data);
+    console.log("📋 Contact form data:", data);
+    console.log("📋 Data types:", {
+      nome: typeof data.nome,
+      email: typeof data.email,
+      telefone: typeof data.telefone,
+      mensagem: typeof data.mensagem,
+      privacidade: typeof data.privacidade,
+    });
+    console.log("📋 JSON stringify:", JSON.stringify(data));
 
     // Simulando envio do formulário
     // await new Promise((resolve) => setTimeout(resolve, 1500));
 
     try {
-      const response = await fetch(
-        "https://pointid.com.br/api/send-email.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...data, recaptchaToken }),
-        }
-      );
-      if (response.ok) {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         form.reset();
-        setRecaptchaToken(null);
+        setIsSubmitted(true);
       } else {
+        throw new Error(result.message || "Erro ao enviar formulário");
       }
     } catch (error) {
       console.error("Erro ao enviar o formulário:", error);
+      // You might want to show an error message to the user here
+      alert("Erro ao enviar formulário. Tente novamente.");
     } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
     }
   }
 
@@ -217,24 +242,43 @@ export default function ContactForm({
               <div className="pt-2">
                 <ReCAPTCHA
                   sitekey={siteKey}
-                  onChange={(token) => setRecaptchaToken(token)}
+                  onChange={(token: any) => setRecaptchaToken(token)}
                 />
               </div>
             )}
             <div className="flex w-full justify-start pt-2">
               <Button
                 type="submit"
-                disabled={
-                  isSubmitting ||
-                  !form.formState.isValid ||
-                  (recaptchaEnabled && !recaptchaToken)
-                }
+                disabled={isSubmitting}
                 variant={buttonVariant ? buttonVariant : "primary"}
               >
-                Enviar mensagem
+                {isSubmitting ? "Enviando..." : "Enviar mensagem"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
+            {Object.keys(form.formState.errors).length > 0 && (
+              <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-sm text-red-600 font-medium mb-1">
+                  Por favor, corrija os seguintes erros:
+                </p>
+                <ul className="text-sm text-red-600 list-disc list-inside space-y-1">
+                  {form.formState.errors.nome && (
+                    <li>Nome: {form.formState.errors.nome.message}</li>
+                  )}
+                  {form.formState.errors.email && (
+                    <li>Email: {form.formState.errors.email.message}</li>
+                  )}
+                  {form.formState.errors.mensagem && (
+                    <li>Mensagem: {form.formState.errors.mensagem.message}</li>
+                  )}
+                  {form.formState.errors.privacidade && (
+                    <li>
+                      Privacidade: {form.formState.errors.privacidade.message}
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
           </form>
         </Form>
       )}
