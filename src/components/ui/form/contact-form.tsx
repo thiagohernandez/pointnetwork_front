@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -50,9 +49,6 @@ export default function ContactForm({
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
-  const recaptchaEnabled = !!siteKey;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -83,15 +79,15 @@ export default function ContactForm({
 
     setIsSubmitting(true);
 
-    console.log("📋 Contact form data:", data);
-    console.log("📋 Data types:", {
-      nome: typeof data.nome,
-      email: typeof data.email,
-      telefone: typeof data.telefone,
-      mensagem: typeof data.mensagem,
-      privacidade: typeof data.privacidade,
-    });
-    console.log("📋 JSON stringify:", JSON.stringify(data));
+    // console.log("📋 Contact form data:", data);
+    // console.log("📋 Data types:", {
+    //   nome: typeof data.nome,
+    //   email: typeof data.email,
+    //   telefone: typeof data.telefone,
+    //   mensagem: typeof data.mensagem,
+    //   privacidade: typeof data.privacidade,
+    // });
+    // console.log("📋 JSON stringify:", JSON.stringify(data));
 
     // Simulando envio do formulário
     // await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -226,7 +222,7 @@ export default function ContactForm({
                     <FormLabel className="text-sm font-normal text-slate-600">
                       Li e aceito a{" "}
                       <Link
-                        href="https://www.pointcondominio.com.br/paginas/politica-de-privacidade"
+                        href="/politica-de-privacidade"
                         className="text-network-primary hover:underline"
                       >
                         política de privacidade
@@ -238,14 +234,6 @@ export default function ContactForm({
                 </FormItem>
               )}
             />
-            {recaptchaEnabled && (
-              <div className="pt-2">
-                <ReCAPTCHA
-                  sitekey={siteKey}
-                  onChange={(token: any) => setRecaptchaToken(token)}
-                />
-              </div>
-            )}
             <div className="flex w-full justify-start pt-2">
               <Button
                 type="submit"
